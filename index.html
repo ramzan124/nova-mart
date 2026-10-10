@@ -3,73 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOVA Mart | Premium Online Shopping Pakistan</title>
+    <title>NOVA MART | Official Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc; }
-        .product-card { border: 1px solid #e2e8f0; border-radius: 1rem; background: #ffffff; transition: all 0.3s ease; }
-        .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.08); }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #ffffff; }
+        .product-card { background: #1e1e1e; border: 1px solid #2a2a2a; border-radius: 0.75rem; transition: all 0.3s ease; }
+        .product-card:hover { border-color: #ccff00; transform: translateY(-3px); }
+        .btn-neon { background-color: #ccff00; color: #000000; font-weight: 800; }
+        .btn-neon:hover { background-color: #b3e600; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800">
+<body class="bg-[#121212] text-white">
 
     <!-- Top Announcement Bar -->
-    <div class="bg-indigo-950 text-white text-xs text-center py-2 px-4 font-semibold flex justify-center items-center space-x-4">
-        <span>🔥 FREE Delivery All Over Pakistan | 100% Guaranteed Products</span>
+    <div class="bg-[#ccff00] text-black text-xs text-center py-2 px-4 font-black uppercase tracking-wider">
+        ⚡ Cash On Delivery All Over Pakistan | Free Shipping 🔥
     </div>
 
     <!-- Header / Navbar -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-slate-200">
-        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
-            <h1 class="text-2xl font-extrabold tracking-tight text-indigo-950">NOVA <span class="text-emerald-500">Mart</span></h1>
-            <div class="flex items-center space-x-3 text-slate-700">
-                <a href="https://www.facebook.com/share/1DjrFG8w3P/" target="_blank" class="hover:text-indigo-600 transition"><i class="fa-brands fa-facebook text-lg"></i></a>
-                <a href="https://www.instagram.com/novam_artonline" target="_blank" class="hover:text-pink-600 transition"><i class="fa-brands fa-instagram text-lg"></i></a>
-                <a href="https://www.tiktok.com/@novamartonline" target="_blank" class="hover:text-black transition"><i class="fa-brands fa-tiktok text-lg"></i></a>
-                <a href="https://youtube.com/@novamartonline" target="_blank" class="hover:text-red-600 transition"><i class="fa-brands fa-youtube text-lg"></i></a>
-                <a href="https://pin.it/6ALBVu9LP" target="_blank" class="hover:text-red-500 transition"><i class="fa-brands fa-pinterest text-lg"></i></a>
-                <a href="https://www.snapchat.com/add/alishavlog_07" target="_blank" class="hover:text-yellow-500 transition"><i class="fa-brands fa-snapchat text-lg"></i></a>
+    <nav class="bg-[#121212] border-b border-zinc-800 sticky top-0 z-40">
+        <div class="max-w-4xl mx-auto px-4 py-3.5 flex justify-between items-center">
+            <button onclick="toggleMenu()" class="text-white text-xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <h1 class="text-2xl font-black tracking-wider text-white">NOVA<span class="text-[#ccff00]">MART</span></h1>
+
+            <div class="flex items-center space-x-3 text-zinc-300">
+                <a href="https://www.facebook.com/share/1DjrFG8w3P/" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com/novam_artonline" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@novamartonline" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://youtube.com/@novamartonline" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-youtube"></i></a>
             </div>
         </div>
     </nav>
 
-    <!-- Trust Badges -->
-    <div class="bg-white border-b border-slate-200 py-2.5">
-        <div class="max-w-4xl mx-auto px-4 grid grid-cols-4 text-center text-[11px] text-slate-600 font-semibold">
-            <div>⚡ Fast Delivery</div>
-            <div>📦 COD Available</div>
-            <div>🔄 Easy Return</div>
-            <div>💎 100% Genuine</div>
+    <!-- Side Menu Drawer -->
+    <div id="sideMenu" class="fixed inset-y-0 left-0 w-64 bg-zinc-900 border-r border-zinc-800 transform -translate-x-full transition-transform duration-300 z-50 p-6 flex flex-col justify-between">
+        <div>
+            <div class="flex justify-between items-center mb-8 border-b border-zinc-800 pb-4">
+                <h2 class="text-xl font-black text-white">NOVA<span class="text-[#ccff00]">MART</span></h2>
+                <button onclick="toggleMenu()" class="text-zinc-400 text-2xl">&times;</button>
+            </div>
+            <div class="space-y-4 text-base font-semibold text-zinc-200">
+                <a href="#" onclick="toggleMenu()" class="block py-2 hover:text-[#ccff00] border-b border-zinc-800/50">Home</a>
+                <a href="#featured" onclick="toggleMenu()" class="block py-2 hover:text-[#ccff00] border-b border-zinc-800/50">Catalog / All Products</a>
+                <a href="#footer" onclick="toggleMenu()" class="block py-2 hover:text-[#ccff00] border-b border-zinc-800/50">Contact Us</a>
+            </div>
+        </div>
+        <div class="text-xs text-zinc-500 border-t border-zinc-800 pt-4">
+            <p>WhatsApp Support:</p>
+            <p class="text-white font-bold text-sm mt-1">03271213219</p>
         </div>
     </div>
 
-    <!-- Products Container -->
-    <main class="max-w-4xl mx-auto px-4 py-6 space-y-6">
+    <!-- Hero Banner Section -->
+    <section class="max-w-4xl mx-auto px-4 pt-4">
+        <div class="relative bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800">
+            <img src="1791656394111.jpg" class="w-full h-64 md:h-80 object-cover opacity-60" alt="Hero Offer">
+            <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
+                <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight uppercase">70% Mega Discount</h2>
+                <p class="text-xs md:text-sm text-zinc-300 mt-2 mb-4 font-semibold">Exclusive Premium Collection Available Now</p>
+                <a href="#featured" class="btn-neon px-8 py-3 rounded-md text-sm font-black uppercase tracking-wider shadow-lg">SHOP NOW</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <main class="max-w-4xl mx-auto px-4 py-8 space-y-8" id="featured">
         
-        <h2 class="text-lg font-bold text-slate-800 border-l-4 border-indigo-600 pl-3">Featured Collection</h2>
+        <h2 class="text-xl font-black text-white uppercase tracking-wider border-l-4 border-[#ccff00] pl-3">Featured Collection</h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Products Grid (2-Columns Like Screenshot) -->
+        <div class="grid grid-cols-2 gap-4">
 
-            <!-- Product 1: Shawl -->
+            <!-- Product 1: Sapphire Shawl -->
             <div class="product-card overflow-hidden flex flex-col justify-between">
                 <div>
                     <div class="relative">
-                        <span class="absolute top-2 left-2 bg-emerald-600 text-white text-[10px] font-bold px-2 py-1 rounded-full">COD Available</span>
-                        <img src="1791656394111.jpg" class="w-full h-64 object-cover" alt="Sapphire Wool Shawl">
+                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase">Sale</span>
+                        <img src="1791656394111.jpg" class="w-full h-44 md:h-60 object-cover" alt="Sapphire Wool Shawl">
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-base text-slate-900">Sapphire Men's Wool Shawl</h3>
-                        <p class="text-xs text-slate-500 mt-1">Fabric: Velvet/Wool | Length: 2.75 Gazz | Premium Quality</p>
-                        <div class="mt-3 flex items-center justify-between">
-                            <span class="text-xl font-extrabold text-indigo-900">Rs. 2,328</span>
-                            <span class="text-xs text-slate-400 line-through">Rs. 3,200</span>
+                    <div class="p-3">
+                        <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">Sapphire Men's Wool Shawl</h3>
+                        <p class="text-[10px] md:text-xs text-zinc-400 mt-1">Velvet/Wool | 2.75 Gazz</p>
+                        <div class="mt-2 flex flex-col">
+                            <span class="text-[10px] md:text-xs text-zinc-500 line-through">Rs. 3,200 PKR</span>
+                            <span class="text-sm md:text-base font-black text-[#ccff00]">Rs. 2,328 PKR</span>
                         </div>
                     </div>
                 </div>
-                <div class="p-4 pt-0">
-                    <button onclick="openCheckout('Sapphire Mens Wool Shawl', 2328, 'COD')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-xl text-sm transition shadow-sm">
-                        Buy Now (Cash on Delivery)
+                <div class="p-3 pt-0">
+                    <button onclick="openCheckout('Sapphire Mens Wool Shawl', 2328)" class="w-full btn-neon py-2 rounded text-[11px] uppercase tracking-wider transition">
+                        Buy Now
                     </button>
                 </div>
             </div>
@@ -78,21 +105,21 @@
             <div class="product-card overflow-hidden flex flex-col justify-between">
                 <div>
                     <div class="relative">
-                        <span class="absolute top-2 left-2 bg-amber-600 text-white text-[10px] font-bold px-2 py-1 rounded-full">Trending Red</span>
-                        <img src="1791656551138.jpg" class="w-full h-64 object-cover" alt="Chiffon Maxi Suit Red">
+                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase">Sale</span>
+                        <img src="1791656551138.jpg" class="w-full h-44 md:h-60 object-cover" alt="Chiffon Maxi Suit Red">
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-base text-slate-900">Chiffon Maxi Suit (Red)</h3>
-                        <p class="text-xs text-slate-500 mt-1">Shirt, Trouser (Length 37) & Dupatta (2.25 Gazz)</p>
-                        <div class="mt-3 flex items-center justify-between">
-                            <span class="text-xl font-extrabold text-indigo-900">Rs. 2,658</span>
-                            <span class="text-xs text-slate-400 line-through">Rs. 3,500</span>
+                    <div class="p-3">
+                        <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">Chiffon Maxi Suit (Red)</h3>
+                        <p class="text-[10px] md:text-xs text-zinc-400 mt-1">3 Pcs | Shirt, Trouser & Dupatta</p>
+                        <div class="mt-2 flex flex-col">
+                            <span class="text-[10px] md:text-xs text-zinc-500 line-through">Rs. 3,500 PKR</span>
+                            <span class="text-sm md:text-base font-black text-[#ccff00]">Rs. 2,658 PKR</span>
                         </div>
                     </div>
                 </div>
-                <div class="p-4 pt-0">
-                    <button onclick="openCheckout('Chiffon Maxi Suit (Red)', 2658, 'COD')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-xl text-sm transition shadow-sm">
-                        Buy Now (Cash on Delivery)
+                <div class="p-3 pt-0">
+                    <button onclick="openCheckout('Chiffon Maxi Suit (Red)', 2658)" class="w-full btn-neon py-2 rounded text-[11px] uppercase tracking-wider transition">
+                        Buy Now
                     </button>
                 </div>
             </div>
@@ -101,44 +128,44 @@
             <div class="product-card overflow-hidden flex flex-col justify-between">
                 <div>
                     <div class="relative">
-                        <span class="absolute top-2 left-2 bg-slate-900 text-white text-[10px] font-bold px-2 py-1 rounded-full">Classic Black</span>
-                        <img src="1791656561857.jpg" class="w-full h-64 object-cover" alt="Chiffon Maxi Suit Black">
+                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase">Sale</span>
+                        <img src="1791656561857.jpg" class="w-full h-44 md:h-60 object-cover" alt="Chiffon Maxi Suit Black">
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-base text-slate-900">Chiffon Maxi Suit (Black)</h3>
-                        <p class="text-xs text-slate-500 mt-1">Shirt, Trouser (Length 37) & Dupatta (2.25 Gazz)</p>
-                        <div class="mt-3 flex items-center justify-between">
-                            <span class="text-xl font-extrabold text-indigo-900">Rs. 2,658</span>
-                            <span class="text-xs text-slate-400 line-through">Rs. 3,500</span>
+                    <div class="p-3">
+                        <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">Chiffon Maxi Suit (Black)</h3>
+                        <p class="text-[10px] md:text-xs text-zinc-400 mt-1">3 Pcs | Shirt, Trouser & Dupatta</p>
+                        <div class="mt-2 flex flex-col">
+                            <span class="text-[10px] md:text-xs text-zinc-500 line-through">Rs. 3,500 PKR</span>
+                            <span class="text-sm md:text-base font-black text-[#ccff00]">Rs. 2,658 PKR</span>
                         </div>
                     </div>
                 </div>
-                <div class="p-4 pt-0">
-                    <button onclick="openCheckout('Chiffon Maxi Suit (Black)', 2658, 'COD')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-xl text-sm transition shadow-sm">
-                        Buy Now (Cash on Delivery)
+                <div class="p-3 pt-0">
+                    <button onclick="openCheckout('Chiffon Maxi Suit (Black)', 2658)" class="w-full btn-neon py-2 rounded text-[11px] uppercase tracking-wider transition">
+                        Buy Now
                     </button>
                 </div>
             </div>
 
-            <!-- Product 4: Electric Juicer Blender -->
+            <!-- Product 4: Juicer Blender -->
             <div class="product-card overflow-hidden flex flex-col justify-between">
                 <div>
                     <div class="relative">
-                        <span class="absolute top-2 left-2 bg-indigo-600 text-white text-[10px] font-bold px-2 py-1 rounded-full">Best Seller</span>
-                        <img src="1791656759396.jpg" class="w-full h-64 object-cover" alt="Portable Electric Juicer Blender">
+                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase">Sale</span>
+                        <img src="1791656759396.jpg" class="w-full h-44 md:h-60 object-cover" alt="Electric Juicer Blender">
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-base text-slate-900">Portable Electric Juicer Blender</h3>
-                        <p class="text-xs text-slate-500 mt-1">ABS Plastic | USB Charging | Stainless Steel Blade</p>
-                        <div class="mt-3 flex items-center justify-between">
-                            <span class="text-xl font-extrabold text-indigo-900">Rs. 2,018</span>
-                            <span class="text-xs text-slate-400 line-through">Rs. 2,800</span>
+                    <div class="p-3">
+                        <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">Electric Juicer Blender</h3>
+                        <p class="text-[10px] md:text-xs text-zinc-400 mt-1">USB Rechargeable | ABS Plastic</p>
+                        <div class="mt-2 flex flex-col">
+                            <span class="text-[10px] md:text-xs text-zinc-500 line-through">Rs. 2,800 PKR</span>
+                            <span class="text-sm md:text-base font-black text-[#ccff00]">Rs. 2,018 PKR</span>
                         </div>
                     </div>
                 </div>
-                <div class="p-4 pt-0">
-                    <button onclick="openCheckout('Portable Electric Juicer Blender', 2018, 'COD')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-xl text-sm transition shadow-sm">
-                        Buy Now (Cash on Delivery)
+                <div class="p-3 pt-0">
+                    <button onclick="openCheckout('Electric Juicer Blender', 2018)" class="w-full btn-neon py-2 rounded text-[11px] uppercase tracking-wider transition">
+                        Buy Now
                     </button>
                 </div>
             </div>
@@ -147,44 +174,44 @@
             <div class="product-card overflow-hidden flex flex-col justify-between">
                 <div>
                     <div class="relative">
-                        <span class="absolute top-2 left-2 bg-pink-600 text-white text-[10px] font-bold px-2 py-1 rounded-full">Cute Design</span>
-                        <img src="1791656922043.jpg" class="w-full h-64 object-cover" alt="Cute Cat Wall Mount Hooks">
+                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase">Sale</span>
+                        <img src="1791656922043.jpg" class="w-full h-44 md:h-60 object-cover" alt="Wall Mount Hooks">
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-base text-slate-900">Cute Cat Wall Mount Hooks (1 Pc)</h3>
-                        <p class="text-xs text-slate-500 mt-1">ABS Plastic | Colors: Pink, Yellow, Green, Purple</p>
-                        <div class="mt-3 flex items-center justify-between">
-                            <span class="text-xl font-extrabold text-indigo-900">Rs. 1,458</span>
-                            <span class="text-xs text-slate-400 line-through">Rs. 2,000</span>
+                    <div class="p-3">
+                        <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">Cute Cat Wall Mount Hooks</h3>
+                        <p class="text-[10px] md:text-xs text-zinc-400 mt-1">1 Pc | Multicolored</p>
+                        <div class="mt-2 flex flex-col">
+                            <span class="text-[10px] md:text-xs text-zinc-500 line-through">Rs. 2,000 PKR</span>
+                            <span class="text-sm md:text-base font-black text-[#ccff00]">Rs. 1,458 PKR</span>
                         </div>
                     </div>
                 </div>
-                <div class="p-4 pt-0">
-                    <button onclick="openCheckout('Cute Cat Wall Mount Hooks', 1458, 'COD')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-xl text-sm transition shadow-sm">
-                        Buy Now (Cash on Delivery)
+                <div class="p-3 pt-0">
+                    <button onclick="openCheckout('Cute Cat Wall Mount Hooks', 1458)" class="w-full btn-neon py-2 rounded text-[11px] uppercase tracking-wider transition">
+                        Buy Now
                     </button>
                 </div>
             </div>
 
             <!-- Product 6: Korean Ring -->
-            <div class="product-card overflow-hidden flex flex-col justify-between md:col-span-2">
+            <div class="product-card overflow-hidden flex flex-col justify-between">
                 <div>
                     <div class="relative">
-                        <span class="absolute top-2 left-2 bg-purple-600 text-white text-[10px] font-bold px-2 py-1 rounded-full">Special Jewelry</span>
-                        <img src="1791657049968.jpg" class="w-full h-64 object-cover" alt="Korean Ring">
+                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase">Sale</span>
+                        <img src="1791657049968.jpg" class="w-full h-44 md:h-60 object-cover" alt="Korean Ring">
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-base text-slate-900">Korean Style Wedding Diamond Ring</h3>
-                        <p class="text-xs text-slate-500 mt-1">Fashion & Accessories | Silver Color | Premium Quality</p>
-                        <div class="mt-3 flex items-center justify-between">
-                            <span class="text-xl font-extrabold text-indigo-900">Rs. 1,364</span>
-                            <span class="text-xs text-slate-400 line-through">Rs. 1,900</span>
+                    <div class="p-3">
+                        <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">Korean Wedding Ring</h3>
+                        <p class="text-[10px] md:text-xs text-zinc-400 mt-1">Silver Color | Premium</p>
+                        <div class="mt-2 flex flex-col">
+                            <span class="text-[10px] md:text-xs text-zinc-500 line-through">Rs. 1,900 PKR</span>
+                            <span class="text-sm md:text-base font-black text-[#ccff00]">Rs. 1,364 PKR</span>
                         </div>
                     </div>
                 </div>
-                <div class="p-4 pt-0">
-                    <button onclick="openCheckout('Korean Style Wedding Ring', 1364, 'COD')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-xl text-sm transition shadow-sm">
-                        Buy Now (Cash on Delivery)
+                <div class="p-3 pt-0">
+                    <button onclick="openCheckout('Korean Style Wedding Ring', 1364)" class="w-full btn-neon py-2 rounded text-[11px] uppercase tracking-wider transition">
+                        Buy Now
                     </button>
                 </div>
             </div>
@@ -192,53 +219,55 @@
         </div>
     </main>
 
-    <!-- Footer with Social Links -->
-    <footer class="bg-white border-t border-slate-200 mt-12 py-8 text-center text-xs text-slate-500 space-y-4">
-        <div class="flex justify-center space-x-6 text-xl text-slate-700">
-            <a href="https://www.facebook.com/share/1DjrFG8w3P/" target="_blank" class="hover:text-indigo-600"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://www.instagram.com/novam_artonline" target="_blank" class="hover:text-pink-600"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@novamartonline" target="_blank" class="hover:text-black"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://youtube.com/@novamartonline" target="_blank" class="hover:text-red-600"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://pin.it/6ALBVu9LP" target="_blank" class="hover:text-red-500"><i class="fa-brands fa-pinterest"></i></a>
-            <a href="https://www.snapchat.com/add/alishavlog_07" target="_blank" class="hover:text-yellow-500"><i class="fa-brands fa-snapchat"></i></a>
+    <!-- Footer -->
+    <footer id="footer" class="bg-[#121212] border-t border-zinc-800 mt-12 py-8 text-center text-xs text-zinc-500 space-y-4">
+        <div class="flex justify-center space-x-6 text-xl text-zinc-300">
+            <a href="https://www.facebook.com/share/1DjrFG8w3P/" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/novam_artonline" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@novamartonline" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://youtube.com/@novamartonline" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://pin.it/6ALBVu9LP" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-pinterest"></i></a>
+            <a href="https://www.snapchat.com/add/alishavlog_07" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-snapchat"></i></a>
         </div>
-        <p>© 2026 NOVA Mart Pakistan. All Rights Reserved.</p>
+        <p>© 2026 NOVA MART. All Rights Reserved.</p>
     </footer>
 
     <!-- Checkout Modal -->
-    <div id="checkoutModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 relative shadow-2xl">
-            <button onclick="closeCheckout()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-2xl font-bold">&times;</button>
+    <div id="checkoutModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4">
+        <div class="bg-zinc-900 border border-zinc-700 rounded-xl max-w-md w-full p-6 relative shadow-2xl">
+            <button onclick="closeCheckout()" class="absolute top-4 right-4 text-zinc-400 hover:text-white text-2xl font-bold">&times;</button>
 
-            <h3 class="text-xl font-bold text-slate-900 mb-1" id="modalProductName">Complete Your Order</h3>
-            <p class="text-sm text-indigo-600 font-bold mb-4" id="modalProductPrice"></p>
+            <h3 class="text-lg font-bold text-white mb-1" id="modalProductName">Complete Your Order</h3>
+            <p class="text-sm text-[#ccff00] font-black mb-4" id="modalProductPrice"></p>
 
             <form id="orderForm" onsubmit="handleOrder(event)" class="space-y-3">
-                <input type="text" id="custName" placeholder="Full Name (پورا نام)" required class="w-full p-3 border border-slate-300 rounded-xl text-sm focus:outline-none focus:border-indigo-600">
-                <input type="tel" id="custPhone" placeholder="WhatsApp Number (واٹس ایپ نمبر)" required class="w-full p-3 border border-slate-300 rounded-xl text-sm focus:outline-none focus:border-indigo-600">
-                <input type="text" id="custCity" placeholder="City (شہر کا نام)" required class="w-full p-3 border border-slate-300 rounded-xl text-sm focus:outline-none focus:border-indigo-600">
-                <textarea id="custAddress" placeholder="Complete Delivery Address (مکمل پتہ)" rows="2" required class="w-full p-3 border border-slate-300 rounded-xl text-sm focus:outline-none focus:border-indigo-600"></textarea>
+                <input type="text" id="custName" placeholder="Full Name (پورا نام)" required class="w-full p-3 rounded bg-zinc-800 text-white border border-zinc-700 text-sm focus:outline-none focus:border-[#ccff00]">
+                <input type="tel" id="custPhone" placeholder="WhatsApp Number (واٹس ایپ نمبر)" required class="w-full p-3 rounded bg-zinc-800 text-white border border-zinc-700 text-sm focus:outline-none focus:border-[#ccff00]">
+                <input type="text" id="custCity" placeholder="City (شہر کا نام)" required class="w-full p-3 rounded bg-zinc-800 text-white border border-zinc-700 text-sm focus:outline-none focus:border-[#ccff00]">
+                <textarea id="custAddress" placeholder="Complete Address (مکمل پتہ)" rows="2" required class="w-full p-3 rounded bg-zinc-800 text-white border border-zinc-700 text-sm focus:outline-none focus:border-[#ccff00]"></textarea>
 
-                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl text-sm transition shadow-md">
+                <button type="submit" class="w-full btn-neon font-black py-3 rounded text-sm uppercase tracking-wider shadow-lg">
                     Confirm Order via WhatsApp 🚀
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- Script -->
+    <!-- Scripts -->
     <script>
+        function toggleMenu() {
+            const menu = document.getElementById('sideMenu');
+            menu.classList.toggle('-translate-x-full');
+        }
+
         let selectedProduct = "";
         let selectedPrice = 0;
-        let selectedType = "";
 
-        function openCheckout(name, price, type) {
+        function openCheckout(name, price) {
             selectedProduct = name;
             selectedPrice = price;
-            selectedType = type;
-
             document.getElementById('modalProductName').innerText = name;
-            document.getElementById('modalProductPrice').innerText = 'Total Amount: Rs. ' + price;
+            document.getElementById('modalProductPrice').innerText = 'Total Amount: Rs. ' + price + ' PKR';
             document.getElementById('checkoutModal').classList.remove('hidden');
         }
 
@@ -253,11 +282,11 @@
             const city = document.getElementById('custCity').value;
             const address = document.getElementById('custAddress').value;
 
-            let msg = `*NEW ORDER - NOVA Mart*\n\n`;
+            let msg = `*NEW ORDER - NOVA MART*\n\n`;
             msg += `*Product:* ${selectedProduct}\n`;
-            msg += `*Price:* Rs. ${selectedPrice}\n`;
-            msg += `*Payment Mode:* ${selectedType}\n\n`;
-            msg += `*Customer Details:*\n`;
+            msg += `*Price:* Rs. ${selectedPrice} PKR\n`;
+            msg += `*Payment:* Cash on Delivery\n\n`;
+            msg += `*Customer Info:*\n`;
             msg += `- Name: ${name}\n`;
             msg += `- Phone: ${phone}\n`;
             msg += `- City: ${city}\n`;
