@@ -1,118 +1,209 @@
-
 <!DOCTYPE html>
 <html lang="ur">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOVA Mart | Premium Shopping</title>
+    <title>NOVA Mart | Premium Online Shopping Pakistan</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: sans-serif; background-color: #f9fafb; }
-        .product-card { border: 1px solid #e5e7eb; border-radius: 1rem; background: #ffffff; padding: 1rem; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc; }
+        .product-card { border: 1px solid #e2e8f0; border-radius: 1rem; background: #ffffff; transition: all 0.3s ease; }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.08); }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-slate-50 text-slate-800">
 
-    <!-- Top Banner -->
-    <div class="bg-indigo-900 text-white text-xs text-center py-2 px-4 font-semibold">
-        🔥 FREE delivery all over Pakistan | 100% Guaranteed Products
+    <!-- Top Announcement Bar -->
+    <div class="bg-indigo-950 text-white text-xs text-center py-2 px-4 font-semibold flex justify-center items-center space-x-4">
+        <span>🔥 FREE Delivery All Over Pakistan | 100% Guaranteed Products</span>
     </div>
 
     <!-- Header / Navbar -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
-        <div class="max-w-md mx-auto px-4 py-3 flex justify-between items-center">
+    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
             <h1 class="text-2xl font-extrabold tracking-tight text-indigo-950">NOVA <span class="text-emerald-500">Mart</span></h1>
-            <span class="text-xl">🛒</span>
+            <div class="flex items-center space-x-3 text-slate-700">
+                <a href="https://www.facebook.com/share/1DjrFG8w3P/" target="_blank" class="hover:text-indigo-600 transition"><i class="fa-brands fa-facebook text-lg"></i></a>
+                <a href="https://www.instagram.com/novam_artonline" target="_blank" class="hover:text-pink-600 transition"><i class="fa-brands fa-instagram text-lg"></i></a>
+                <a href="https://www.tiktok.com/@novamartonline" target="_blank" class="hover:text-black transition"><i class="fa-brands fa-tiktok text-lg"></i></a>
+                <a href="https://youtube.com/@novamartonline" target="_blank" class="hover:text-red-600 transition"><i class="fa-brands fa-youtube text-lg"></i></a>
+                <a href="https://pin.it/6ALBVu9LP" target="_blank" class="hover:text-red-500 transition"><i class="fa-brands fa-pinterest text-lg"></i></a>
+                <a href="https://www.snapchat.com/add/alishavlog_07" target="_blank" class="hover:text-yellow-500 transition"><i class="fa-brands fa-snapchat text-lg"></i></a>
+            </div>
         </div>
     </nav>
 
     <!-- Trust Badges -->
-    <div class="bg-white border-b border-gray-200 py-3">
-        <div class="max-w-md mx-auto grid grid-cols-4 text-center text-[10px] text-gray-600 font-semibold px-2">
-            <div>🚚 Fast Delivery</div>
-            <div>💵 COD Available</div>
+    <div class="bg-white border-b border-slate-200 py-2.5">
+        <div class="max-w-4xl mx-auto px-4 grid grid-cols-4 text-center text-[11px] text-slate-600 font-semibold">
+            <div>⚡ Fast Delivery</div>
+            <div>📦 COD Available</div>
             <div>🔄 Easy Return</div>
-            <div>🛡️ 100% Genuine</div>
+            <div>💎 100% Genuine</div>
         </div>
     </div>
 
-    <!-- Products List Container -->
-    <div class="max-w-md mx-auto px-4 py-6 space-y-6">
+    <!-- Products Container -->
+    <main class="max-w-4xl mx-auto px-4 py-6 space-y-6">
         
-        <!-- Product 1: Local COD -->
-        <div class="product-card shadow-sm">
-            <div class="relative">
-                <span class="bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded-full mb-2 inline-block">Local Stock - COD</span>
-                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500" class="w-full h-52 object-cover rounded-xl mb-3" alt="Product Image">
-            </div>
-            <h3 class="font-bold text-lg text-gray-900">Premium Smart Watch</h3>
-            <p class="text-xs text-gray-500 mb-2">High Quality | Long Battery Life</p>
-            <div class="flex justify-between items-center mb-4">
-                <span class="text-xl font-extrabold text-indigo-900">Rs. 3,499</span>
-                <span class="text-xs text-gray-400 line-through">Rs. 4,999</span>
-            </div>
-            <button onclick="openCheckout('Premium Smart Watch', 3499, 'COD')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl transition">
-                Buy Now (Cash on Delivery)
-            </button>
-        </div>
+        <h2 class="text-lg font-bold text-slate-800 border-l-4 border-indigo-600 pl-3">Featured Collection</h2>
 
-        <!-- Product 2: China Advance -->
-        <div class="product-card shadow-sm">
-            <div class="relative">
-                <span class="bg-amber-500 text-white text-[10px] font-bold px-2 py-1 rounded-full mb-2 inline-block">Direct Import - Advance Payment</span>
-                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500" class="w-full h-52 object-cover rounded-xl mb-3" alt="Product Image">
-            </div>
-            <h3 class="font-bold text-lg text-gray-900">Wireless Noise Cancelling Headphones</h3>
-            <p class="text-xs text-amber-600 font-medium mb-2">⚠️ Special Import Item (Requires Advance Payment)</p>
-            <div class="flex justify-between items-center mb-4">
-                <span class="text-xl font-extrabold text-indigo-900">Rs. 5,999</span>
-                <span class="text-xs text-gray-400 line-through">Rs. 7,999</span>
-            </div>
-            <button onclick="openCheckout('Wireless Headphones', 5999, 'ADVANCE')" class="w-full bg-indigo-900 hover:bg-indigo-950 text-white font-bold py-3 rounded-xl transition">
-                Order via JazzCash / Easypaisa
-            </button>
-        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-    </div>
-
-    <!-- Checkout Modal -->
-    <div id="checkoutModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-end sm:items-center justify-center">
-        <div class="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6 relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeCheckout()" class="absolute top-4 right-4 text-gray-400 text-2xl font-bold">&times;</button>
-            
-            <h3 class="text-xl font-bold text-gray-900 mb-1" id="modalProductName">Complete Your Order</h3>
-            <p class="text-sm text-indigo-600 font-bold mb-4" id="modalProductPrice"></p>
-
-            <!-- Advance Payment Details Box -->
-            <div id="advanceInfoBox" class="hidden bg-amber-50 border border-amber-200 rounded-xl p-4 mb-4 text-xs text-amber-900">
-                <p class="font-bold text-sm mb-1 text-center">💳 Advance Payment Details</p>
-                <p class="text-center text-gray-600 mb-3">چائنا امپورٹڈ پروڈکٹ کے لیے رقم نیچے دیے گئے اکاؤنٹ میں ٹرانسفر کر کے رسید واٹس ایپ کریں۔</p>
-                
-                <div class="bg-white p-3 rounded-xl border border-amber-200 space-y-2">
-                    <div class="font-mono text-left bg-gray-50 p-3 rounded-lg border border-gray-200 space-y-1.5">
-                        <p class="flex justify-between items-center">
-                            <span><b>Number:</b> <span id="accNum" class="text-indigo-900 font-bold">03271213219</span></span>
-                            <button type="button" onclick="copyNumber()" class="bg-indigo-600 text-white text-[11px] px-2.5 py-1 rounded hover:bg-indigo-700">Copy</button>
-                        </p>
-                        <p><b>Account Type:</b> JazzCash / Easypaisa</p>
-                        <p><b>Account Title:</b> NOVA Mart</p>
+            <!-- Product 1: Sapphire Shawl -->
+            <div class="product-card overflow-hidden flex flex-col justify-between">
+                <div>
+                    <div class="relative">
+                        <span class="absolute top-2 left-2 bg-emerald-600 text-white text-[10px] font-bold px-2 py-1 rounded-full">COD Available</span>
+                        <img src="https://images.unsplash.com/photo-1520975954732-35dd22299614?w=500" class="w-full h-56 object-cover" alt="Sapphire Shawl">
                     </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-base text-slate-900">Sapphire Men's Wool Shawl</h3>
+                        <p class="text-xs text-slate-500 mt-1">Fabric: Velvet/Wool | Length: 2.75 Gazz | Premium Quality</p>
+                        <div class="mt-3 flex items-center justify-between">
+                            <span class="text-xl font-extrabold text-indigo-900">Rs. 2,328</span>
+                            <span class="text-xs text-slate-400 line-through">Rs. 3,200</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 pt-0">
+                    <button onclick="openCheckout('Sapphire Mens Wool Shawl', 2328, 'COD')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-xl text-sm transition shadow-sm">
+                        Buy Now (Cash on Delivery)
+                    </button>
                 </div>
             </div>
 
+            <!-- Product 2: Chiffon Maxi Suit -->
+            <div class="product-card overflow-hidden flex flex-col justify-between">
+                <div>
+                    <div class="relative">
+                        <span class="absolute top-2 left-2 bg-amber-600 text-white text-[10px] font-bold px-2 py-1 rounded-full">Trending Maxi</span>
+                        <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500" class="w-full h-56 object-cover" alt="Chiffon Maxi Suit">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-base text-slate-900">Chiffon Maxi Suit (Black / Maroon)</h3>
+                        <p class="text-xs text-slate-500 mt-1">Shirt, Trouser (Length 37) & Dupatta (2.25 Gazz)</p>
+                        <div class="mt-3 flex items-center justify-between">
+                            <span class="text-xl font-extrabold text-indigo-900">Rs. 2,658</span>
+                            <span class="text-xs text-slate-400 line-through">Rs. 3,500</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 pt-0">
+                    <button onclick="openCheckout('Chiffon Maxi Suit', 2658, 'COD')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-xl text-sm transition shadow-sm">
+                        Buy Now (Cash on Delivery)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 3: Electric Juicer Blender -->
+            <div class="product-card overflow-hidden flex flex-col justify-between">
+                <div>
+                    <div class="relative">
+                        <span class="absolute top-2 left-2 bg-indigo-600 text-white text-[10px] font-bold px-2 py-1 rounded-full">Best Seller</span>
+                        <img src="https://images.unsplash.com/photo-1570222094114-d074f3d1e2d5?w=500" class="w-full h-56 object-cover" alt="Electric Juicer Blender">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-base text-slate-900">Portable Electric Juicer Blender</h3>
+                        <p class="text-xs text-slate-500 mt-1">ABS Plastic | USB Charging | Stainless Steel Blade</p>
+                        <div class="mt-3 flex items-center justify-between">
+                            <span class="text-xl font-extrabold text-indigo-900">Rs. 2,018</span>
+                            <span class="text-xs text-slate-400 line-through">Rs. 2,800</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 pt-0">
+                    <button onclick="openCheckout('Portable Electric Juicer Blender', 2018, 'COD')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-xl text-sm transition shadow-sm">
+                        Buy Now (Cash on Delivery)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 4: Wall Mount Hooks -->
+            <div class="product-card overflow-hidden flex flex-col justify-between">
+                <div>
+                    <div class="relative">
+                        <span class="absolute top-2 left-2 bg-pink-600 text-white text-[10px] font-bold px-2 py-1 rounded-full">Cute Design</span>
+                        <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500" class="w-full h-56 object-cover" alt="Wall Mount Hooks">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-base text-slate-900">Cute Cat Wall Mount Hooks (1 Pc)</h3>
+                        <p class="text-xs text-slate-500 mt-1">ABS Plastic | Colors: Pink, Yellow, Green, Purple</p>
+                        <div class="mt-3 flex items-center justify-between">
+                            <span class="text-xl font-extrabold text-indigo-900">Rs. 1,458</span>
+                            <span class="text-xs text-slate-400 line-through">Rs. 2,000</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 pt-0">
+                    <button onclick="openCheckout('Cute Cat Wall Mount Hooks', 1458, 'COD')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-xl text-sm transition shadow-sm">
+                        Buy Now (Cash on Delivery)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 5: Korean Ring -->
+            <div class="product-card overflow-hidden flex flex-col justify-between md:col-span-2">
+                <div>
+                    <div class="relative">
+                        <span class="absolute top-2 left-2 bg-purple-600 text-white text-[10px] font-bold px-2 py-1 rounded-full">Special Jewelry</span>
+                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500" class="w-full h-56 object-cover" alt="Korean Ring">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-base text-slate-900">Korean Style Wedding Diamond Ring</h3>
+                        <p class="text-xs text-slate-500 mt-1">Fashion & Accessories | Silver Color | Premium Quality</p>
+                        <div class="mt-3 flex items-center justify-between">
+                            <span class="text-xl font-extrabold text-indigo-900">Rs. 1,364</span>
+                            <span class="text-xs text-slate-400 line-through">Rs. 1,900</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 pt-0">
+                    <button onclick="openCheckout('Korean Style Wedding Ring', 1364, 'COD')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-xl text-sm transition shadow-sm">
+                        Buy Now (Cash on Delivery)
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer with Social Links -->
+    <footer class="bg-white border-t border-slate-200 mt-12 py-8 text-center text-xs text-slate-500 space-y-4">
+        <div class="flex justify-center space-x-6 text-xl text-slate-700">
+            <a href="https://www.facebook.com/share/1DjrFG8w3P/" target="_blank" class="hover:text-indigo-600"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/novam_artonline" target="_blank" class="hover:text-pink-600"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@novamartonline" target="_blank" class="hover:text-black"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://youtube.com/@novamartonline" target="_blank" class="hover:text-red-600"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://pin.it/6ALBVu9LP" target="_blank" class="hover:text-red-500"><i class="fa-brands fa-pinterest"></i></a>
+            <a href="https://www.snapchat.com/add/alishavlog_07" target="_blank" class="hover:text-yellow-500"><i class="fa-brands fa-snapchat"></i></a>
+        </div>
+        <p>© 2026 NOVA Mart Pakistan. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 relative shadow-2xl">
+            <button onclick="closeCheckout()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-2xl font-bold">&times;</button>
+
+            <h3 class="text-xl font-bold text-slate-900 mb-1" id="modalProductName">Complete Your Order</h3>
+            <p class="text-sm text-indigo-600 font-bold mb-4" id="modalProductPrice"></p>
+
             <form id="orderForm" onsubmit="handleOrder(event)" class="space-y-3">
-                <input type="text" id="custName" placeholder="Full Name (پورا نام)" required class="w-full p-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-indigo-600">
-                <input type="tel" id="custPhone" placeholder="WhatsApp Number (واٹس ایپ نمبر)" required class="w-full p-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-indigo-600">
-                <input type="text" id="custCity" placeholder="City (شہر کا نام)" required class="w-full p-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-indigo-600">
-                <textarea id="custAddress" placeholder="Complete Delivery Address (مکمل پتہ)" required class="w-full p-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-indigo-600 h-20"></textarea>
-                
-                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl transition text-sm">
+                <input type="text" id="custName" placeholder="Full Name (پورا نام)" required class="w-full p-3 border border-slate-300 rounded-xl text-sm focus:outline-none focus:border-indigo-600">
+                <input type="tel" id="custPhone" placeholder="WhatsApp Number (واٹس ایپ نمبر)" required class="w-full p-3 border border-slate-300 rounded-xl text-sm focus:outline-none focus:border-indigo-600">
+                <input type="text" id="custCity" placeholder="City (شہر کا نام)" required class="w-full p-3 border border-slate-300 rounded-xl text-sm focus:outline-none focus:border-indigo-600">
+                <textarea id="custAddress" placeholder="Complete Delivery Address (مکمل پتہ)" rows="2" required class="w-full p-3 border border-slate-300 rounded-xl text-sm focus:outline-none focus:border-indigo-600"></textarea>
+
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl text-sm transition shadow-md">
                     Confirm Order via WhatsApp 🚀
                 </button>
             </form>
         </div>
     </div>
 
+    <!-- Script -->
     <script>
         let selectedProduct = "";
         let selectedPrice = 0;
@@ -125,24 +216,11 @@
 
             document.getElementById('modalProductName').innerText = name;
             document.getElementById('modalProductPrice').innerText = 'Total Amount: Rs. ' + price;
-            
-            if(type === 'ADVANCE') {
-                document.getElementById('advanceInfoBox').classList.remove('hidden');
-            } else {
-                document.getElementById('advanceInfoBox').classList.add('hidden');
-            }
-
             document.getElementById('checkoutModal').classList.remove('hidden');
         }
 
         function closeCheckout() {
             document.getElementById('checkoutModal').classList.add('hidden');
-        }
-
-        function copyNumber() {
-            const num = document.getElementById('accNum').innerText;
-            navigator.clipboard.writeText(num);
-            alert("Account Number Copied: " + num);
         }
 
         function handleOrder(e) {
@@ -152,18 +230,18 @@
             const city = document.getElementById('custCity').value;
             const address = document.getElementById('custAddress').value;
 
-            let msg = `*NEW ORDER - NOVA MART*%0A%0A`;
-            msg += `*Product:* ${selectedProduct}%0A`;
-            msg += `*Price:* Rs. ${selectedPrice}%0A`;
-            msg += `*Payment Mode:* ${selectedType}%0A%0A`;
-            msg += `*Customer Details:*%0A`;
-            msg += `- Name: ${name}%0A`;
-            msg += `- Phone: ${phone}%0A`;
-            msg += `- City: ${city}%0A`;
+            let msg = `*NEW ORDER - NOVA Mart*\n\n`;
+            msg += `*Product:* ${selectedProduct}\n`;
+            msg += `*Price:* Rs. ${selectedPrice}\n`;
+            msg += `*Payment Mode:* ${selectedType}\n\n`;
+            msg += `*Customer Details:*\n`;
+            msg += `- Name: ${name}\n`;
+            msg += `- Phone: ${phone}\n`;
+            msg += `- City: ${city}\n`;
             msg += `- Address: ${address}`;
 
-            const myNumber = "923271213219"; 
-            window.open(`https://wa.me/${myNumber}?text=${msg}`, '_blank');
+            const myNumber = "923271213219";
+            window.open(`https://wa.me/${myNumber}?text=` + encodeURIComponent(msg), '_blank');
         }
     </script>
 </body>
