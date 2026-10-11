@@ -7,18 +7,24 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #ffffff; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #ffffff; scroll-behavior: smooth; }
         .product-card { background: #1e1e1e; border: 1px solid #2a2a2a; border-radius: 0.75rem; transition: all 0.3s ease; }
         .product-card:hover { border-color: #ccff00; transform: translateY(-3px); }
         .btn-neon { background-color: #ccff00; color: #000000; font-weight: 800; }
         .btn-neon:hover { background-color: #b3e600; }
+        .filter-btn.active { background-color: #ccff00; color: #000000; border-color: #ccff00; }
+        @keyframes pulse-fast { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .pulse-text { animation: pulse-fast 1.5s infinite; }
+        .popup-animate { animation: slideIn 0.5s forwards, fadeOut 0.5s 4.5s forwards; }
+        @keyframes slideIn { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; transform: translateY(100%); } }
     </style>
 </head>
 <body class="bg-[#121212] text-white">
 
-    <!-- Top Announcement Bar -->
-    <div class="bg-[#ccff00] text-black text-xs text-center py-2 px-4 font-black uppercase tracking-wider">
-        ⚡ Cash On Delivery All Over Pakistan | Free Shipping 🔥
+    <!-- Top Announcement Bar with Live Countdown -->
+    <div class="bg-[#ccff00] text-black text-xs text-center py-2 px-4 font-black uppercase tracking-wider flex justify-center items-center space-x-2">
+        <span>⚡ SALE ENDS IN: <span id="countdownTimer" class="bg-black text-[#ccff00] px-2 py-0.5 rounded font-mono font-bold">04h 15m 30s</span> | FREE SHIPPING 🔥</span>
     </div>
 
     <!-- Header / Navbar -->
@@ -49,6 +55,8 @@
             <div class="space-y-4 text-base font-semibold text-zinc-200">
                 <a href="#" onclick="toggleMenu()" class="block py-2 hover:text-[#ccff00] border-b border-zinc-800/50">Home</a>
                 <a href="#featured" onclick="toggleMenu()" class="block py-2 hover:text-[#ccff00] border-b border-zinc-800/50">Catalog / All Products</a>
+                <a href="#reviews" onclick="toggleMenu()" class="block py-2 hover:text-[#ccff00] border-b border-zinc-800/50">Customer Reviews ⭐</a>
+                <a href="#faq" onclick="toggleMenu()" class="block py-2 hover:text-[#ccff00] border-b border-zinc-800/50">FAQs & Help</a>
                 <a href="#footer" onclick="toggleMenu()" class="block py-2 hover:text-[#ccff00] border-b border-zinc-800/50">Contact Us</a>
             </div>
         </div>
@@ -61,8 +69,9 @@
     <!-- Hero Banner Section -->
     <section class="max-w-4xl mx-auto px-4 pt-4">
         <div class="relative bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800">
-            <img src="1791656394111.jpg" class="w-full h-64 md:h-80 object-cover opacity-60" alt="Hero Offer">
+            <img src="1791656394111.jpg" class="w-full h-64 md:h-80 object-cover opacity-60 cursor-pointer" onclick="zoomImage('1791656394111.jpg')" alt="Hero Offer">
             <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
+                <span class="bg-[#ccff00] text-black text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-widest mb-2">Limited Time Deal</span>
                 <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight uppercase">70% Mega Discount</h2>
                 <p class="text-xs md:text-sm text-zinc-300 mt-2 mb-4 font-semibold">Exclusive Premium Collection Available Now</p>
                 <a href="#featured" class="btn-neon px-8 py-3 rounded-md text-sm font-black uppercase tracking-wider shadow-lg">SHOP NOW</a>
@@ -70,19 +79,49 @@
         </div>
     </section>
 
-    <!-- Main Content Container -->
-    <main class="max-w-4xl mx-auto px-4 py-8 space-y-8" id="featured">
-        
-        <h2 class="text-xl font-black text-white uppercase tracking-wider border-l-4 border-[#ccff00] pl-3">Featured Collection</h2>
+    <!-- Trust Badges -->
+    <section class="max-w-4xl mx-auto px-4 pt-6">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-3 grid grid-cols-4 text-center text-[10px] md:text-xs font-bold text-zinc-300">
+            <div>⚡ Fast Delivery</div>
+            <div>📦 Cash on Delivery</div>
+            <div>🔄 Easy Returns</div>
+            <div>💎 100% Guaranteed</div>
+        </div>
+    </section>
 
-        <!-- Products Grid (2-Columns Like Screenshot) -->
-        <div class="grid grid-cols-2 gap-4">
+    <!-- Main Content Container -->
+    <main class="max-w-4xl mx-auto px-4 py-8 space-y-6" id="featured">
+        
+        <!-- Header & Search Input -->
+        <div class="space-y-4 border-b border-zinc-800 pb-4">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-black text-white uppercase tracking-wider border-l-4 border-[#ccff00] pl-3">Featured Collection</h2>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="relative">
+                <input type="text" id="searchInput" onkeyup="searchProducts()" placeholder="Search products... (پروڈکٹ تلاش کریں)" class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-700 text-sm text-white focus:outline-none focus:border-[#ccff00] transition">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-zinc-500 text-sm"></i>
+            </div>
+            
+            <!-- Category Filter Buttons -->
+            <div class="flex items-center space-x-2 overflow-x-auto pb-2 scrollbar-none text-xs">
+                <button onclick="filterCategory('all', this)" class="filter-btn active px-4 py-1.5 rounded-full border border-zinc-700 bg-zinc-800 text-zinc-300 font-bold whitespace-nowrap transition">All</button>
+                <button onclick="filterCategory('clothing', this)" class="filter-btn px-4 py-1.5 rounded-full border border-zinc-700 bg-zinc-800 text-zinc-300 font-bold whitespace-nowrap transition">Clothing</button>
+                <button onclick="filterCategory('gadgets', this)" class="filter-btn px-4 py-1.5 rounded-full border border-zinc-700 bg-zinc-800 text-zinc-300 font-bold whitespace-nowrap transition">Gadgets</button>
+                <button onclick="filterCategory('jewelry', this)" class="filter-btn px-4 py-1.5 rounded-full border border-zinc-700 bg-zinc-800 text-zinc-300 font-bold whitespace-nowrap transition">Jewelry & Accessories</button>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="grid grid-cols-2 gap-4" id="productsGrid">
 
             <!-- Product 1: Sapphire Shawl -->
-            <div class="product-card overflow-hidden flex flex-col justify-between">
+            <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="clothing" data-title="sapphire mens wool shawl">
                 <div>
-                    <div class="relative">
+                    <div class="relative cursor-pointer" onclick="zoomImage('1791656394111.jpg')">
                         <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase">Sale</span>
+                        <span class="absolute top-2 right-2 bg-red-600/90 text-white text-[9px] font-bold px-1.5 py-0.5 rounded pulse-text">🔥 Only 3 Left</span>
                         <img src="1791656394111.jpg" class="w-full h-44 md:h-60 object-cover" alt="Sapphire Wool Shawl">
                     </div>
                     <div class="p-3">
@@ -94,18 +133,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="p-3 pt-0">
+                <div class="p-3 pt-0 space-y-2">
                     <button onclick="openCheckout('Sapphire Mens Wool Shawl', 2328)" class="w-full btn-neon py-2 rounded text-[11px] uppercase tracking-wider transition">
                         Buy Now
+                    </button>
+                    <button onclick="shareProduct('Sapphire Mens Wool Shawl', 2328)" class="w-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 py-1.5 rounded text-[10px] font-bold uppercase tracking-wider transition flex items-center justify-center space-x-1.5">
+                        <i class="fa-solid fa-share-nodes text-emerald-400"></i> <span>Share</span>
                     </button>
                 </div>
             </div>
 
             <!-- Product 2: Red Suit -->
-            <div class="product-card overflow-hidden flex flex-col justify-between">
+            <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="clothing" data-title="chiffon maxi suit red">
                 <div>
-                    <div class="relative">
+                    <div class="relative cursor-pointer" onclick="zoomImage('1791656551138.jpg')">
                         <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase">Sale</span>
+                        <span class="absolute top-2 right-2 bg-amber-600/90 text-white text-[9px] font-bold px-1.5 py-0.5 rounded">🔥 Trending</span>
                         <img src="1791656551138.jpg" class="w-full h-44 md:h-60 object-cover" alt="Chiffon Maxi Suit Red">
                     </div>
                     <div class="p-3">
@@ -117,18 +160,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="p-3 pt-0">
+                <div class="p-3 pt-0 space-y-2">
                     <button onclick="openCheckout('Chiffon Maxi Suit (Red)', 2658)" class="w-full btn-neon py-2 rounded text-[11px] uppercase tracking-wider transition">
                         Buy Now
+                    </button>
+                    <button onclick="shareProduct('Chiffon Maxi Suit (Red)', 2658)" class="w-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 py-1.5 rounded text-[10px] font-bold uppercase tracking-wider transition flex items-center justify-center space-x-1.5">
+                        <i class="fa-solid fa-share-nodes text-emerald-400"></i> <span>Share</span>
                     </button>
                 </div>
             </div>
 
             <!-- Product 3: Black Suit -->
-            <div class="product-card overflow-hidden flex flex-col justify-between">
+            <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="clothing" data-title="chiffon maxi suit black">
                 <div>
-                    <div class="relative">
+                    <div class="relative cursor-pointer" onclick="zoomImage('1791656561857.jpg')">
                         <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase">Sale</span>
+                        <span class="absolute top-2 right-2 bg-emerald-600/90 text-white text-[9px] font-bold px-1.5 py-0.5 rounded">Popular</span>
                         <img src="1791656561857.jpg" class="w-full h-44 md:h-60 object-cover" alt="Chiffon Maxi Suit Black">
                     </div>
                     <div class="p-3">
@@ -140,18 +187,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="p-3 pt-0">
+                <div class="p-3 pt-0 space-y-2">
                     <button onclick="openCheckout('Chiffon Maxi Suit (Black)', 2658)" class="w-full btn-neon py-2 rounded text-[11px] uppercase tracking-wider transition">
                         Buy Now
+                    </button>
+                    <button onclick="shareProduct('Chiffon Maxi Suit (Black)', 2658)" class="w-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 py-1.5 rounded text-[10px] font-bold uppercase tracking-wider transition flex items-center justify-center space-x-1.5">
+                        <i class="fa-solid fa-share-nodes text-emerald-400"></i> <span>Share</span>
                     </button>
                 </div>
             </div>
 
             <!-- Product 4: Juicer Blender -->
-            <div class="product-card overflow-hidden flex flex-col justify-between">
+            <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="gadgets" data-title="electric juicer blender">
                 <div>
-                    <div class="relative">
+                    <div class="relative cursor-pointer" onclick="zoomImage('1791656759396.jpg')">
                         <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase">Sale</span>
+                        <span class="absolute top-2 right-2 bg-indigo-600/90 text-white text-[9px] font-bold px-1.5 py-0.5 rounded">Best Seller</span>
                         <img src="1791656759396.jpg" class="w-full h-44 md:h-60 object-cover" alt="Electric Juicer Blender">
                     </div>
                     <div class="p-3">
@@ -163,17 +214,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="p-3 pt-0">
+                <div class="p-3 pt-0 space-y-2">
                     <button onclick="openCheckout('Electric Juicer Blender', 2018)" class="w-full btn-neon py-2 rounded text-[11px] uppercase tracking-wider transition">
                         Buy Now
+                    </button>
+                    <button onclick="shareProduct('Electric Juicer Blender', 2018)" class="w-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 py-1.5 rounded text-[10px] font-bold uppercase tracking-wider transition flex items-center justify-center space-x-1.5">
+                        <i class="fa-solid fa-share-nodes text-emerald-400"></i> <span>Share</span>
                     </button>
                 </div>
             </div>
 
             <!-- Product 5: Wall Mount Hooks -->
-            <div class="product-card overflow-hidden flex flex-col justify-between">
+            <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="jewelry" data-title="cute cat wall mount hooks">
                 <div>
-                    <div class="relative">
+                    <div class="relative cursor-pointer" onclick="zoomImage('1791656922043.jpg')">
                         <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase">Sale</span>
                         <img src="1791656922043.jpg" class="w-full h-44 md:h-60 object-cover" alt="Wall Mount Hooks">
                     </div>
@@ -186,17 +240,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="p-3 pt-0">
+                <div class="p-3 pt-0 space-y-2">
                     <button onclick="openCheckout('Cute Cat Wall Mount Hooks', 1458)" class="w-full btn-neon py-2 rounded text-[11px] uppercase tracking-wider transition">
                         Buy Now
+                    </button>
+                    <button onclick="shareProduct('Cute Cat Wall Mount Hooks', 1458)" class="w-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 py-1.5 rounded text-[10px] font-bold uppercase tracking-wider transition flex items-center justify-center space-x-1.5">
+                        <i class="fa-solid fa-share-nodes text-emerald-400"></i> <span>Share</span>
                     </button>
                 </div>
             </div>
 
             <!-- Product 6: Korean Ring -->
-            <div class="product-card overflow-hidden flex flex-col justify-between">
+            <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="jewelry" data-title="korean wedding ring diamond">
                 <div>
-                    <div class="relative">
+                    <div class="relative cursor-pointer" onclick="zoomImage('1791657049968.jpg')">
                         <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase">Sale</span>
                         <img src="1791657049968.jpg" class="w-full h-44 md:h-60 object-cover" alt="Korean Ring">
                     </div>
@@ -209,15 +266,96 @@
                         </div>
                     </div>
                 </div>
-                <div class="p-3 pt-0">
+                <div class="p-3 pt-0 space-y-2">
                     <button onclick="openCheckout('Korean Style Wedding Ring', 1364)" class="w-full btn-neon py-2 rounded text-[11px] uppercase tracking-wider transition">
                         Buy Now
+                    </button>
+                    <button onclick="shareProduct('Korean Style Wedding Ring', 1364)" class="w-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 py-1.5 rounded text-[10px] font-bold uppercase tracking-wider transition flex items-center justify-center space-x-1.5">
+                        <i class="fa-solid fa-share-nodes text-emerald-400"></i> <span>Share</span>
                     </button>
                 </div>
             </div>
 
         </div>
     </main>
+
+    <!-- Customer Reviews Section (Trust Booster) -->
+    <section id="reviews" class="max-w-4xl mx-auto px-4 py-8 border-t border-zinc-800 space-y-6">
+        <div class="flex items-center justify-between">
+            <h2 class="text-lg font-black text-white uppercase tracking-wider border-l-4 border-[#ccff00] pl-3">Customer Reviews</h2>
+            <div class="text-right">
+                <div class="text-[#ccff00] text-sm">⭐⭐⭐⭐⭐ <span class="font-bold text-white">4.9/5</span></div>
+                <p class="text-[10px] text-zinc-400">Based on 200+ Verified Orders</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-xl space-y-2">
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-xs text-white">Usman Khan <span class="text-emerald-400 text-[10px] font-normal">✔ Verified Buyer</span></span>
+                    <span class="text-amber-400 text-xs">⭐⭐⭐⭐⭐</span>
+                </div>
+                <p class="text-xs text-zinc-300">"Bohat hi zabardast quality hy! Delivery bhi 2 din me mil gayi. Sapphire shawl bilkul original jesi hy."</p>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-xl space-y-2">
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-xs text-white">Ayesha Siddiqua <span class="text-emerald-400 text-[10px] font-normal">✔ Verified Buyer</span></span>
+                    <span class="text-amber-400 text-xs">⭐⭐⭐⭐⭐</span>
+                </div>
+                <p class="text-xs text-zinc-300">"Chiffon Maxi Suit red wala bohat pyara hy. Fabric aur stitching boht zabardast hy. Highly recommended!"</p>
+            </div>
+        </div>
+
+        <!-- Add Review Box -->
+        <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-xl space-y-3">
+            <h3 class="text-sm font-bold text-white">Leave a Review</h3>
+            <div class="flex space-x-2 text-amber-400 text-lg cursor-pointer">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <textarea placeholder="Write your experience with NOVA Mart..." rows="2" class="w-full p-2.5 rounded bg-zinc-800 text-white text-xs border border-zinc-700 focus:outline-none focus:border-[#ccff00]"></textarea>
+            <button onclick="alert('Thank you! Your review has been submitted for verification.')" class="btn-neon px-4 py-2 rounded text-xs uppercase font-bold">Submit Review</button>
+        </div>
+    </section>
+
+    <!-- FAQ Accordion Section -->
+    <section id="faq" class="max-w-4xl mx-auto px-4 py-8 border-t border-zinc-800 space-y-4">
+        <h2 class="text-lg font-black text-white uppercase tracking-wider border-l-4 border-[#ccff00] pl-3">Frequently Asked Questions</h2>
+        <div class="space-y-3 text-xs">
+            <details class="bg-zinc-900 border border-zinc-800 rounded-xl p-3 cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">How many days will delivery take? <i class="fa-solid fa-chevron-down text-[#ccff00]"></i></summary>
+                <p class="text-zinc-400 mt-2">Delivery usually takes 2 to 4 working days all across Pakistan.</p>
+            </details>
+            <details class="bg-zinc-900 border border-zinc-800 rounded-xl p-3 cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">Can I open and check the parcel before payment? <i class="fa-solid fa-chevron-down text-[#ccff00]"></i></summary>
+                <p class="text-zinc-400 mt-2">Yes! We allow our customers to open and inspect the parcel upon delivery.</p>
+            </details>
+            <details class="bg-zinc-900 border border-zinc-800 rounded-xl p-3 cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">What is the return & exchange policy? <i class="fa-solid fa-chevron-down text-[#ccff00]"></i></summary>
+                <p class="text-zinc-400 mt-2">We offer a 7-day hassle-free exchange or return policy if there is any issue with the product.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- Live Order Notification Pop-up -->
+    <div id="salesPopup" class="fixed bottom-5 left-5 bg-zinc-900 border border-[#ccff00]/40 p-3 rounded-xl shadow-2xl z-50 hidden items-center space-x-3 text-xs max-w-xs">
+        <span class="text-2xl">🛍️</span>
+        <div>
+            <p class="font-bold text-white" id="popupText">Ali from Karachi bought Electric Juicer Blender</p>
+            <p class="text-[10px] text-zinc-400" id="popupTime">2 minutes ago • Verified</p>
+        </div>
+    </div>
+
+    <!-- Image Lightbox Modal -->
+    <div id="imageModal" class="fixed inset-0 bg-black/90 backdrop-blur-md hidden flex items-center justify-center z-50 p-4">
+        <button onclick="closeZoom()" class="absolute top-5 right-5 text-white text-3xl font-bold">&times;</button>
+        <img id="modalImage" src="" class="max-w-full max-h-[85vh] rounded-lg object-contain">
+    </div>
+
+    <!-- Floating AI WhatsApp Assistant Button -->
+    <a href="https://wa.me/923271213219?text=Hello%20NOVA%20Mart!%20I%20have%20a%20question%20about%20your%20products." target="_blank" class="fixed bottom-5 right-5 bg-emerald-500 text-white p-3.5 rounded-full shadow-2xl z-50 flex items-center space-x-2 hover:scale-110 transition duration-300">
+        <i class="fa-brands fa-whatsapp text-2xl"></i>
+        <span class="text-xs font-black hidden md:inline pr-1">Ask AI Assistant</span>
+    </a>
 
     <!-- Footer -->
     <footer id="footer" class="bg-[#121212] border-t border-zinc-800 mt-12 py-8 text-center text-xs text-zinc-500 space-y-4">
@@ -246,6 +384,13 @@
                 <input type="text" id="custCity" placeholder="City (شہر کا نام)" required class="w-full p-3 rounded bg-zinc-800 text-white border border-zinc-700 text-sm focus:outline-none focus:border-[#ccff00]">
                 <textarea id="custAddress" placeholder="Complete Address (مکمل پتہ)" rows="2" required class="w-full p-3 rounded bg-zinc-800 text-white border border-zinc-700 text-sm focus:outline-none focus:border-[#ccff00]"></textarea>
 
+                <!-- Coupon Discount Field -->
+                <div class="flex space-x-2">
+                    <input type="text" id="couponCode" placeholder="Promo Code (Use: NOVA10)" class="w-full p-2.5 rounded bg-zinc-800 text-white border border-zinc-700 text-xs focus:outline-none focus:border-[#ccff00]">
+                    <button type="button" onclick="applyCoupon()" class="bg-zinc-700 hover:bg-zinc-600 px-4 py-2 rounded text-xs font-bold text-[#ccff00]">Apply</button>
+                </div>
+                <p id="couponMsg" class="text-[10px] hidden font-bold"></p>
+
                 <button type="submit" class="w-full btn-neon font-black py-3 rounded text-sm uppercase tracking-wider shadow-lg">
                     Confirm Order via WhatsApp 🚀
                 </button>
@@ -260,19 +405,118 @@
             menu.classList.toggle('-translate-x-full');
         }
 
+        function filterCategory(cat, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            document.querySelectorAll('.item-card').forEach(card => {
+                if(cat === 'all' || card.getAttribute('data-category') === cat) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function searchProducts() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.item-card');
+
+            cards.forEach(card => {
+                const title = card.getAttribute('data-title').toLowerCase();
+                if (title.includes(input)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function shareProduct(name, price) {
+            const storeUrl = window.location.href;
+            const shareText = `🔥 Check out this amazing item on NOVA MART!\n\n*Product:* ${name}\n*Price:* Rs. ${price} PKR\n\n👉 Order here: ${storeUrl}`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: name,
+                    text: shareText,
+                    url: storeUrl,
+                }).catch(() => {});
+            } else {
+                window.open(`https://api.whatsapp.com/send?text=` + encodeURIComponent(shareText), '_blank');
+            }
+        }
+
+        function zoomImage(src) {
+            document.getElementById('modalImage').src = src;
+            document.getElementById('imageModal').classList.remove('hidden');
+        }
+
+        function closeZoom() {
+            document.getElementById('imageModal').classList.add('hidden');
+        }
+
+        // Live Countdown Timer
+        let timeInSeconds = 15330;
+        setInterval(() => {
+            if(timeInSeconds > 0) timeInSeconds--;
+            let h = Math.floor(timeInSeconds / 3600);
+            let m = Math.floor((timeInSeconds % 3600) / 60);
+            let s = timeInSeconds % 60;
+            document.getElementById('countdownTimer').innerText = 
+                `${h < 10 ? '0'+h : h}h ${m < 10 ? '0'+m : m}m ${s < 10 ? '0'+s : s}s`;
+        }, 1000);
+
+        // Sales Popup Simulation
+        const fakeSales = [
+            { name: "Ali from Lahore", product: "Sapphire Men's Wool Shawl" },
+            { name: "Sana from Islamabad", product: "Chiffon Maxi Suit (Red)" },
+            { name: "Hamza from Karachi", product: "Electric Juicer Blender" },
+            { name: "Usman from Faisalabad", product: "Korean Wedding Ring" }
+        ];
+        setInterval(() => {
+            const popup = document.getElementById('salesPopup');
+            const randomSale = fakeSales[Math.floor(Math.random() * fakeSales.length)];
+            document.getElementById('popupText').innerText = `${randomSale.name} bought ${randomSale.product}`;
+            popup.classList.remove('hidden');
+            popup.classList.add('flex', 'popup-animate');
+            setTimeout(() => {
+                popup.classList.add('hidden');
+                popup.classList.remove('flex', 'popup-animate');
+            }, 5000);
+        }, 12000);
+
         let selectedProduct = "";
         let selectedPrice = 0;
+        let finalPrice = 0;
 
         function openCheckout(name, price) {
             selectedProduct = name;
             selectedPrice = price;
+            finalPrice = price;
             document.getElementById('modalProductName').innerText = name;
             document.getElementById('modalProductPrice').innerText = 'Total Amount: Rs. ' + price + ' PKR';
+            document.getElementById('couponMsg').classList.add('hidden');
+            document.getElementById('couponCode').value = '';
             document.getElementById('checkoutModal').classList.remove('hidden');
         }
 
         function closeCheckout() {
             document.getElementById('checkoutModal').classList.add('hidden');
+        }
+
+        function applyCoupon() {
+            const code = document.getElementById('couponCode').value.trim();
+            const msg = document.getElementById('couponMsg');
+            if(code.toUpperCase() === "NOVA10") {
+                finalPrice = Math.round(selectedPrice * 0.9);
+                msg.innerText = "✓ Promo NOVA10 applied! 10% OFF";
+                msg.className = "text-[10px] text-emerald-400 font-bold block";
+                document.getElementById('modalProductPrice').innerText = 'Total Amount: Rs. ' + finalPrice + ' PKR (10% Discounted)';
+            } else {
+                msg.innerText = "✗ Invalid Promo Code";
+                msg.className = "text-[10px] text-red-400 font-bold block";
+            }
         }
 
         function handleOrder(e) {
@@ -284,7 +528,7 @@
 
             let msg = `*NEW ORDER - NOVA MART*\n\n`;
             msg += `*Product:* ${selectedProduct}\n`;
-            msg += `*Price:* Rs. ${selectedPrice} PKR\n`;
+            msg += `*Final Price:* Rs. ${finalPrice} PKR\n`;
             msg += `*Payment:* Cash on Delivery\n\n`;
             msg += `*Customer Info:*\n`;
             msg += `- Name: ${name}\n`;
