@@ -22,9 +22,9 @@
 </head>
 <body class="bg-[#121212] text-white">
 
-    <!-- Top Announcement Bar with Live Countdown -->
-    <div class="bg-[#ccff00] text-black text-xs text-center py-2 px-4 font-black uppercase tracking-wider flex justify-center items-center space-x-2">
-        <span>⚡ SALE ENDS IN: <span id="countdownTimer" class="bg-black text-[#ccff00] px-2 py-0.5 rounded font-mono font-bold">04h 15m 30s</span> | FREE SHIPPING 🔥</span>
+    <!-- Dynamic Announcement Bar Slider -->
+    <div class="bg-[#ccff00] text-black text-xs text-center py-2 px-4 font-black uppercase tracking-wider overflow-hidden">
+        <p id="announcementText" class="transition-all duration-500">⚡ CASH ON DELIVERY ALL OVER PAKISTAN | FREE SHIPPING 🔥</p>
     </div>
 
     <!-- Header / Navbar -->
@@ -36,11 +36,12 @@
 
             <h1 class="text-2xl font-black tracking-wider text-white">NOVA<span class="text-[#ccff00]">MART</span></h1>
 
-            <div class="flex items-center space-x-3 text-zinc-300">
-                <a href="https://www.facebook.com/share/1DjrFG8w3P/" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-facebook"></i></a>
-                <a href="https://www.instagram.com/novam_artonline" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@novamartonline" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://youtube.com/@novamartonline" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-youtube"></i></a>
+            <div class="flex items-center space-x-4 text-zinc-300">
+                <button onclick="openCartDrawer()" class="relative hover:text-[#ccff00] text-lg">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="cartBadge" class="absolute -top-2 -right-2 bg-[#ccff00] text-black text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                </button>
+                <a href="https://www.instagram.com/novam_artonline" target="_blank" class="hover:text-[#ccff00] hidden md:inline"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </div>
     </nav>
@@ -66,6 +67,28 @@
         </div>
     </div>
 
+    <!-- Cart Drawer Modal -->
+    <div id="cartDrawer" class="fixed inset-y-0 right-0 w-80 bg-zinc-900 border-l border-zinc-800 transform translate-x-full transition-transform duration-300 z-50 p-6 flex flex-col justify-between shadow-2xl">
+        <div>
+            <div class="flex justify-between items-center mb-6 border-b border-zinc-800 pb-4">
+                <h3 class="text-lg font-black text-white">Your Cart (<span id="cartCount">0</span>)</h3>
+                <button onclick="openCartDrawer()" class="text-zinc-400 text-2xl">&times;</button>
+            </div>
+            <div id="cartItemsList" class="space-y-3 max-h-[50vh] overflow-y-auto text-xs">
+                <p class="text-zinc-500 text-center py-8">Your cart is empty.</p>
+            </div>
+        </div>
+        <div class="border-t border-zinc-800 pt-4 space-y-3">
+            <div class="flex justify-between text-sm font-bold">
+                <span>Total:</span>
+                <span id="cartTotalPrice" class="text-[#ccff00]">Rs. 0 PKR</span>
+            </div>
+            <button onclick="checkoutCart()" class="w-full btn-neon py-3 rounded text-xs uppercase font-black tracking-wider shadow-lg">
+                Proceed to WhatsApp Order 🚀
+            </button>
+        </div>
+    </div>
+
     <!-- Hero Banner Section -->
     <section class="max-w-4xl mx-auto px-4 pt-4">
         <div class="relative bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800">
@@ -79,7 +102,7 @@
         </div>
     </section>
 
-    <!-- Trust Badges -->
+    <!-- Trust Badges Section -->
     <section class="max-w-4xl mx-auto px-4 pt-6">
         <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-3 grid grid-cols-4 text-center text-[10px] md:text-xs font-bold text-zinc-300">
             <div>⚡ Fast Delivery</div>
@@ -116,7 +139,7 @@
         <!-- Products Grid -->
         <div class="grid grid-cols-2 gap-4" id="productsGrid">
 
-            <!-- Product 1: Sapphire Shawl -->
+            <!-- Product 1 -->
             <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="clothing" data-title="sapphire mens wool shawl">
                 <div>
                     <div class="relative cursor-pointer" onclick="zoomImage('1791656394111.jpg')">
@@ -134,16 +157,17 @@
                     </div>
                 </div>
                 <div class="p-3 pt-0 space-y-2">
-                    <button onclick="openCheckout('Sapphire Mens Wool Shawl', 2328)" class="w-full btn-neon py-2 rounded text-[11px] uppercase tracking-wider transition">
-                        Buy Now
-                    </button>
-                    <button onclick="shareProduct('Sapphire Mens Wool Shawl', 2328)" class="w-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 py-1.5 rounded text-[10px] font-bold uppercase tracking-wider transition flex items-center justify-center space-x-1.5">
+                    <div class="grid grid-cols-2 gap-1.5">
+                        <button onclick="openCheckout('Sapphire Mens Wool Shawl', 2328, true)" class="btn-neon py-2 rounded text-[10px] uppercase font-black transition">Buy Now</button>
+                        <button onclick="addToCart('Sapphire Mens Wool Shawl', 2328)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold transition">+ Cart</button>
+                    </div>
+                    <button onclick="shareProduct('Sapphire Mens Wool Shawl', 2328)" class="w-full bg-zinc-800/60 hover:bg-zinc-700 text-zinc-300 py-1.5 rounded text-[10px] font-bold uppercase transition flex items-center justify-center space-x-1">
                         <i class="fa-solid fa-share-nodes text-emerald-400"></i> <span>Share</span>
                     </button>
                 </div>
             </div>
 
-            <!-- Product 2: Red Suit -->
+            <!-- Product 2 -->
             <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="clothing" data-title="chiffon maxi suit red">
                 <div>
                     <div class="relative cursor-pointer" onclick="zoomImage('1791656551138.jpg')">
@@ -161,16 +185,17 @@
                     </div>
                 </div>
                 <div class="p-3 pt-0 space-y-2">
-                    <button onclick="openCheckout('Chiffon Maxi Suit (Red)', 2658)" class="w-full btn-neon py-2 rounded text-[11px] uppercase tracking-wider transition">
-                        Buy Now
-                    </button>
-                    <button onclick="shareProduct('Chiffon Maxi Suit (Red)', 2658)" class="w-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 py-1.5 rounded text-[10px] font-bold uppercase tracking-wider transition flex items-center justify-center space-x-1.5">
+                    <div class="grid grid-cols-2 gap-1.5">
+                        <button onclick="openCheckout('Chiffon Maxi Suit (Red)', 2658, true)" class="btn-neon py-2 rounded text-[10px] uppercase font-black transition">Buy Now</button>
+                        <button onclick="addToCart('Chiffon Maxi Suit (Red)', 2658)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold transition">+ Cart</button>
+                    </div>
+                    <button onclick="shareProduct('Chiffon Maxi Suit (Red)', 2658)" class="w-full bg-zinc-800/60 hover:bg-zinc-700 text-zinc-300 py-1.5 rounded text-[10px] font-bold uppercase transition flex items-center justify-center space-x-1">
                         <i class="fa-solid fa-share-nodes text-emerald-400"></i> <span>Share</span>
                     </button>
                 </div>
             </div>
 
-            <!-- Product 3: Black Suit -->
+            <!-- Product 3 -->
             <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="clothing" data-title="chiffon maxi suit black">
                 <div>
                     <div class="relative cursor-pointer" onclick="zoomImage('1791656561857.jpg')">
@@ -188,16 +213,17 @@
                     </div>
                 </div>
                 <div class="p-3 pt-0 space-y-2">
-                    <button onclick="openCheckout('Chiffon Maxi Suit (Black)', 2658)" class="w-full btn-neon py-2 rounded text-[11px] uppercase tracking-wider transition">
-                        Buy Now
-                    </button>
-                    <button onclick="shareProduct('Chiffon Maxi Suit (Black)', 2658)" class="w-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 py-1.5 rounded text-[10px] font-bold uppercase tracking-wider transition flex items-center justify-center space-x-1.5">
+                    <div class="grid grid-cols-2 gap-1.5">
+                        <button onclick="openCheckout('Chiffon Maxi Suit (Black)', 2658, true)" class="btn-neon py-2 rounded text-[10px] uppercase font-black transition">Buy Now</button>
+                        <button onclick="addToCart('Chiffon Maxi Suit (Black)', 2658)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold transition">+ Cart</button>
+                    </div>
+                    <button onclick="shareProduct('Chiffon Maxi Suit (Black)', 2658)" class="w-full bg-zinc-800/60 hover:bg-zinc-700 text-zinc-300 py-1.5 rounded text-[10px] font-bold uppercase transition flex items-center justify-center space-x-1">
                         <i class="fa-solid fa-share-nodes text-emerald-400"></i> <span>Share</span>
                     </button>
                 </div>
             </div>
 
-            <!-- Product 4: Juicer Blender -->
+            <!-- Product 4 -->
             <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="gadgets" data-title="electric juicer blender">
                 <div>
                     <div class="relative cursor-pointer" onclick="zoomImage('1791656759396.jpg')">
@@ -215,16 +241,17 @@
                     </div>
                 </div>
                 <div class="p-3 pt-0 space-y-2">
-                    <button onclick="openCheckout('Electric Juicer Blender', 2018)" class="w-full btn-neon py-2 rounded text-[11px] uppercase tracking-wider transition">
-                        Buy Now
-                    </button>
-                    <button onclick="shareProduct('Electric Juicer Blender', 2018)" class="w-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 py-1.5 rounded text-[10px] font-bold uppercase tracking-wider transition flex items-center justify-center space-x-1.5">
+                    <div class="grid grid-cols-2 gap-1.5">
+                        <button onclick="openCheckout('Electric Juicer Blender', 2018, false)" class="btn-neon py-2 rounded text-[10px] uppercase font-black transition">Buy Now</button>
+                        <button onclick="addToCart('Electric Juicer Blender', 2018)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold transition">+ Cart</button>
+                    </div>
+                    <button onclick="shareProduct('Electric Juicer Blender', 2018)" class="w-full bg-zinc-800/60 hover:bg-zinc-700 text-zinc-300 py-1.5 rounded text-[10px] font-bold uppercase transition flex items-center justify-center space-x-1">
                         <i class="fa-solid fa-share-nodes text-emerald-400"></i> <span>Share</span>
                     </button>
                 </div>
             </div>
 
-            <!-- Product 5: Wall Mount Hooks -->
+            <!-- Product 5 -->
             <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="jewelry" data-title="cute cat wall mount hooks">
                 <div>
                     <div class="relative cursor-pointer" onclick="zoomImage('1791656922043.jpg')">
@@ -241,16 +268,17 @@
                     </div>
                 </div>
                 <div class="p-3 pt-0 space-y-2">
-                    <button onclick="openCheckout('Cute Cat Wall Mount Hooks', 1458)" class="w-full btn-neon py-2 rounded text-[11px] uppercase tracking-wider transition">
-                        Buy Now
-                    </button>
-                    <button onclick="shareProduct('Cute Cat Wall Mount Hooks', 1458)" class="w-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 py-1.5 rounded text-[10px] font-bold uppercase tracking-wider transition flex items-center justify-center space-x-1.5">
+                    <div class="grid grid-cols-2 gap-1.5">
+                        <button onclick="openCheckout('Cute Cat Wall Mount Hooks', 1458, false)" class="btn-neon py-2 rounded text-[10px] uppercase font-black transition">Buy Now</button>
+                        <button onclick="addToCart('Cute Cat Wall Mount Hooks', 1458)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold transition">+ Cart</button>
+                    </div>
+                    <button onclick="shareProduct('Cute Cat Wall Mount Hooks', 1458)" class="w-full bg-zinc-800/60 hover:bg-zinc-700 text-zinc-300 py-1.5 rounded text-[10px] font-bold uppercase transition flex items-center justify-center space-x-1">
                         <i class="fa-solid fa-share-nodes text-emerald-400"></i> <span>Share</span>
                     </button>
                 </div>
             </div>
 
-            <!-- Product 6: Korean Ring -->
+            <!-- Product 6 -->
             <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="jewelry" data-title="korean wedding ring diamond">
                 <div>
                     <div class="relative cursor-pointer" onclick="zoomImage('1791657049968.jpg')">
@@ -267,10 +295,11 @@
                     </div>
                 </div>
                 <div class="p-3 pt-0 space-y-2">
-                    <button onclick="openCheckout('Korean Style Wedding Ring', 1364)" class="w-full btn-neon py-2 rounded text-[11px] uppercase tracking-wider transition">
-                        Buy Now
-                    </button>
-                    <button onclick="shareProduct('Korean Style Wedding Ring', 1364)" class="w-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 py-1.5 rounded text-[10px] font-bold uppercase tracking-wider transition flex items-center justify-center space-x-1.5">
+                    <div class="grid grid-cols-2 gap-1.5">
+                        <button onclick="openCheckout('Korean Style Wedding Ring', 1364, false)" class="btn-neon py-2 rounded text-[10px] uppercase font-black transition">Buy Now</button>
+                        <button onclick="addToCart('Korean Style Wedding Ring', 1364)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold transition">+ Cart</button>
+                    </div>
+                    <button onclick="shareProduct('Korean Style Wedding Ring', 1364)" class="w-full bg-zinc-800/60 hover:bg-zinc-700 text-zinc-300 py-1.5 rounded text-[10px] font-bold uppercase transition flex items-center justify-center space-x-1">
                         <i class="fa-solid fa-share-nodes text-emerald-400"></i> <span>Share</span>
                     </button>
                 </div>
@@ -279,7 +308,7 @@
         </div>
     </main>
 
-    <!-- Customer Reviews Section (Trust Booster) -->
+    <!-- Customer Reviews Section -->
     <section id="reviews" class="max-w-4xl mx-auto px-4 py-8 border-t border-zinc-800 space-y-6">
         <div class="flex items-center justify-between">
             <h2 class="text-lg font-black text-white uppercase tracking-wider border-l-4 border-[#ccff00] pl-3">Customer Reviews</h2>
@@ -289,7 +318,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div id="reviewsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-xl space-y-2">
                 <div class="flex justify-between items-center">
                     <span class="font-bold text-xs text-white">Usman Khan <span class="text-emerald-400 text-[10px] font-normal">✔ Verified Buyer</span></span>
@@ -309,15 +338,13 @@
         <!-- Add Review Box -->
         <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-xl space-y-3">
             <h3 class="text-sm font-bold text-white">Leave a Review</h3>
-            <div class="flex space-x-2 text-amber-400 text-lg cursor-pointer">
-                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-            </div>
-            <textarea placeholder="Write your experience with NOVA Mart..." rows="2" class="w-full p-2.5 rounded bg-zinc-800 text-white text-xs border border-zinc-700 focus:outline-none focus:border-[#ccff00]"></textarea>
-            <button onclick="alert('Thank you! Your review has been submitted for verification.')" class="btn-neon px-4 py-2 rounded text-xs uppercase font-bold">Submit Review</button>
+            <input type="text" id="revName" placeholder="Your Name (آپ کا نام)" class="w-full p-2.5 rounded bg-zinc-800 text-white text-xs border border-zinc-700 focus:outline-none focus:border-[#ccff00]">
+            <textarea id="revMsg" placeholder="Write your experience with NOVA Mart..." rows="2" class="w-full p-2.5 rounded bg-zinc-800 text-white text-xs border border-zinc-700 focus:outline-none focus:border-[#ccff00]"></textarea>
+            <button onclick="submitUserReview()" class="btn-neon px-4 py-2 rounded text-xs uppercase font-bold">Submit Review</button>
         </div>
     </section>
 
-    <!-- FAQ Accordion Section -->
+    <!-- FAQ Section -->
     <section id="faq" class="max-w-4xl mx-auto px-4 py-8 border-t border-zinc-800 space-y-4">
         <h2 class="text-lg font-black text-white uppercase tracking-wider border-l-4 border-[#ccff00] pl-3">Frequently Asked Questions</h2>
         <div class="space-y-3 text-xs">
@@ -329,26 +356,12 @@
                 <summary class="font-bold text-white flex justify-between items-center">Can I open and check the parcel before payment? <i class="fa-solid fa-chevron-down text-[#ccff00]"></i></summary>
                 <p class="text-zinc-400 mt-2">Yes! We allow our customers to open and inspect the parcel upon delivery.</p>
             </details>
-            <details class="bg-zinc-900 border border-zinc-800 rounded-xl p-3 cursor-pointer">
-                <summary class="font-bold text-white flex justify-between items-center">What is the return & exchange policy? <i class="fa-solid fa-chevron-down text-[#ccff00]"></i></summary>
-                <p class="text-zinc-400 mt-2">We offer a 7-day hassle-free exchange or return policy if there is any issue with the product.</p>
-            </details>
         </div>
     </section>
 
-    <!-- Live Order Notification Pop-up -->
-    <div id="salesPopup" class="fixed bottom-5 left-5 bg-zinc-900 border border-[#ccff00]/40 p-3 rounded-xl shadow-2xl z-50 hidden items-center space-x-3 text-xs max-w-xs">
-        <span class="text-2xl">🛍️</span>
-        <div>
-            <p class="font-bold text-white" id="popupText">Ali from Karachi bought Electric Juicer Blender</p>
-            <p class="text-[10px] text-zinc-400" id="popupTime">2 minutes ago • Verified</p>
-        </div>
-    </div>
-
-    <!-- Image Lightbox Modal -->
-    <div id="imageModal" class="fixed inset-0 bg-black/90 backdrop-blur-md hidden flex items-center justify-center z-50 p-4">
-        <button onclick="closeZoom()" class="absolute top-5 right-5 text-white text-3xl font-bold">&times;</button>
-        <img id="modalImage" src="" class="max-w-full max-h-[85vh] rounded-lg object-contain">
+    <!-- Floating Live Chat Helper Badge -->
+    <div class="fixed bottom-20 right-5 bg-zinc-900/90 border border-zinc-700 text-white px-3 py-1.5 rounded-xl shadow-xl text-[10px] z-40 hidden md:block">
+        Need help? Chat with us! 💬
     </div>
 
     <!-- Floating AI WhatsApp Assistant Button -->
@@ -359,6 +372,12 @@
 
     <!-- Footer -->
     <footer id="footer" class="bg-[#121212] border-t border-zinc-800 mt-12 py-8 text-center text-xs text-zinc-500 space-y-4">
+        <!-- Secure Payment Badges -->
+        <div class="flex justify-center items-center space-x-4 text-zinc-400 text-xs font-bold pb-2 border-b border-zinc-800/50 max-w-xs mx-auto">
+            <span>📦 Cash on Delivery</span>
+            <span>📱 JazzCash</span>
+            <span>💳 EasyPaisa</span>
+        </div>
         <div class="flex justify-center space-x-6 text-xl text-zinc-300">
             <a href="https://www.facebook.com/share/1DjrFG8w3P/" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-facebook"></i></a>
             <a href="https://www.instagram.com/novam_artonline" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-instagram"></i></a>
@@ -370,21 +389,30 @@
         <p>© 2026 NOVA MART. All Rights Reserved.</p>
     </footer>
 
-    <!-- Checkout Modal -->
+    <!-- Checkout Modal with Variant Selector -->
     <div id="checkoutModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4">
         <div class="bg-zinc-900 border border-zinc-700 rounded-xl max-w-md w-full p-6 relative shadow-2xl">
             <button onclick="closeCheckout()" class="absolute top-4 right-4 text-zinc-400 hover:text-white text-2xl font-bold">&times;</button>
 
             <h3 class="text-lg font-bold text-white mb-1" id="modalProductName">Complete Your Order</h3>
-            <p class="text-sm text-[#ccff00] font-black mb-4" id="modalProductPrice"></p>
+            <p class="text-sm text-[#ccff00] font-black mb-3" id="modalProductPrice"></p>
 
             <form id="orderForm" onsubmit="handleOrder(event)" class="space-y-3">
+                <!-- Size Selector (Show if applicable) -->
+                <div id="variantSelector" class="hidden text-xs space-y-1">
+                    <label class="font-bold text-zinc-300">Select Size:</label>
+                    <select id="selectedSize" class="w-full p-2.5 rounded bg-zinc-800 text-white border border-zinc-700 focus:outline-none focus:border-[#ccff00]">
+                        <option value="Medium">Medium (M)</option>
+                        <option value="Large">Large (L)</option>
+                        <option value="Standard">Standard Size</option>
+                    </select>
+                </div>
+
                 <input type="text" id="custName" placeholder="Full Name (پورا نام)" required class="w-full p-3 rounded bg-zinc-800 text-white border border-zinc-700 text-sm focus:outline-none focus:border-[#ccff00]">
                 <input type="tel" id="custPhone" placeholder="WhatsApp Number (واٹس ایپ نمبر)" required class="w-full p-3 rounded bg-zinc-800 text-white border border-zinc-700 text-sm focus:outline-none focus:border-[#ccff00]">
                 <input type="text" id="custCity" placeholder="City (شہر کا نام)" required class="w-full p-3 rounded bg-zinc-800 text-white border border-zinc-700 text-sm focus:outline-none focus:border-[#ccff00]">
                 <textarea id="custAddress" placeholder="Complete Address (مکمل پتہ)" rows="2" required class="w-full p-3 rounded bg-zinc-800 text-white border border-zinc-700 text-sm focus:outline-none focus:border-[#ccff00]"></textarea>
 
-                <!-- Coupon Discount Field -->
                 <div class="flex space-x-2">
                     <input type="text" id="couponCode" placeholder="Promo Code (Use: NOVA10)" class="w-full p-2.5 rounded bg-zinc-800 text-white border border-zinc-700 text-xs focus:outline-none focus:border-[#ccff00]">
                     <button type="button" onclick="applyCoupon()" class="bg-zinc-700 hover:bg-zinc-600 px-4 py-2 rounded text-xs font-bold text-[#ccff00]">Apply</button>
@@ -398,17 +426,94 @@
         </div>
     </div>
 
+    <!-- Image Lightbox Modal -->
+    <div id="imageModal" class="fixed inset-0 bg-black/90 backdrop-blur-md hidden flex items-center justify-center z-50 p-4">
+        <button onclick="closeZoom()" class="absolute top-5 right-5 text-white text-3xl font-bold">&times;</button>
+        <img id="modalImage" src="" class="max-w-full max-h-[85vh] rounded-lg object-contain">
+    </div>
+
     <!-- Scripts -->
     <script>
+        // Announcement Slider
+        const announcements = [
+            "⚡ CASH ON DELIVERY ALL OVER PAKISTAN | FREE SHIPPING 🔥",
+            "🎉 USE PROMO CODE 'NOVA10' FOR 10% EXTRA DISCOUNT!",
+            "💎 100% ORIGINAL & PREMIUM QUALITY GUARANTEED"
+        ];
+        let annIdx = 0;
+        setInterval(() => {
+            annIdx = (annIdx + 1) % announcements.length;
+            const el = document.getElementById('announcementText');
+            if(el) el.innerText = announcements[annIdx];
+        }, 4000);
+
         function toggleMenu() {
-            const menu = document.getElementById('sideMenu');
-            menu.classList.toggle('-translate-x-full');
+            document.getElementById('sideMenu').classList.toggle('-translate-x-full');
+        }
+
+        let cart = [];
+        function openCartDrawer() {
+            document.getElementById('cartDrawer').classList.toggle('translate-x-full');
+        }
+
+        function addToCart(name, price) {
+            let item = cart.find(i => i.name === name);
+            if(item) { item.qty++; } else { cart.push({ name, price, qty: 1 }); }
+            updateCartUI();
+            openCartDrawer();
+        }
+
+        function updateCartUI() {
+            const list = document.getElementById('cartItemsList');
+            const badge = document.getElementById('cartBadge');
+            const count = document.getElementById('cartCount');
+            const totalPriceEl = document.getElementById('cartTotalPrice');
+
+            badge.innerText = cart.reduce((sum, i) => sum + i.qty, 0);
+            count.innerText = cart.reduce((sum, i) => sum + i.qty, 0);
+
+            if(cart.length === 0) {
+                list.innerHTML = `<p class="text-zinc-500 text-center py-8">Your cart is empty.</p>`;
+                totalPriceEl.innerText = "Rs. 0 PKR";
+                return;
+            }
+
+            let html = '';
+            let total = 0;
+            cart.forEach((item, index) => {
+                total += item.price * item.qty;
+                html += `<div class="flex justify-between items-center bg-zinc-800 p-2.5 rounded-lg">
+                    <div>
+                        <p class="font-bold text-white">${item.name}</p>
+                        <p class="text-zinc-400">Rs. ${item.price} x ${item.qty}</p>
+                    </div>
+                    <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-300 font-bold px-2">&times;</button>
+                </div>`;
+            });
+            list.innerHTML = html;
+            totalPriceEl.innerText = "Rs. " + total + " PKR";
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function checkoutCart() {
+            if(cart.length === 0) return;
+            let msg = `*MULTI-ITEM ORDER - NOVA MART*\n\n`;
+            let total = 0;
+            cart.forEach((i, idx) => {
+                msg += `${idx + 1}. *${i.name}* (Qty: ${i.qty}) - Rs. ${i.price * i.qty} PKR\n`;
+                total += i.price * i.qty;
+            });
+            msg += `\n*Total Amount:* Rs. ${total} PKR\n*Payment:* Cash on Delivery\n\nPlease confirm order details.`;
+            window.open(`https://wa.me/923271213219?text=` + encodeURIComponent(msg), '_blank');
         }
 
         function filterCategory(cat, btn) {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-
             document.querySelectorAll('.item-card').forEach(card => {
                 if(cat === 'all' || card.getAttribute('data-category') === cat) {
                     card.style.display = 'flex';
@@ -420,28 +525,17 @@
 
         function searchProducts() {
             const input = document.getElementById('searchInput').value.toLowerCase();
-            const cards = document.querySelectorAll('.item-card');
-
-            cards.forEach(card => {
+            document.querySelectorAll('.item-card').forEach(card => {
                 const title = card.getAttribute('data-title').toLowerCase();
-                if (title.includes(input)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
+                card.style.display = title.includes(input) ? 'flex' : 'none';
             });
         }
 
         function shareProduct(name, price) {
             const storeUrl = window.location.href;
-            const shareText = `🔥 Check out this amazing item on NOVA MART!\n\n*Product:* ${name}\n*Price:* Rs. ${price} PKR\n\n👉 Order here: ${storeUrl}`;
-            
+            const shareText = `🔥 Check out this item on NOVA MART!\n*Product:* ${name}\n*Price:* Rs. ${price} PKR\n\n👉 Order: ${storeUrl}`;
             if (navigator.share) {
-                navigator.share({
-                    title: name,
-                    text: shareText,
-                    url: storeUrl,
-                }).catch(() => {});
+                navigator.share({ title: name, text: shareText, url: storeUrl }).catch(() => {});
             } else {
                 window.open(`https://api.whatsapp.com/send?text=` + encodeURIComponent(shareText), '_blank');
             }
@@ -451,51 +545,43 @@
             document.getElementById('modalImage').src = src;
             document.getElementById('imageModal').classList.remove('hidden');
         }
-
         function closeZoom() {
             document.getElementById('imageModal').classList.add('hidden');
         }
 
-        // Live Countdown Timer
-        let timeInSeconds = 15330;
-        setInterval(() => {
-            if(timeInSeconds > 0) timeInSeconds--;
-            let h = Math.floor(timeInSeconds / 3600);
-            let m = Math.floor((timeInSeconds % 3600) / 60);
-            let s = timeInSeconds % 60;
-            document.getElementById('countdownTimer').innerText = 
-                `${h < 10 ? '0'+h : h}h ${m < 10 ? '0'+m : m}m ${s < 10 ? '0'+s : s}s`;
-        }, 1000);
-
-        // Sales Popup Simulation
-        const fakeSales = [
-            { name: "Ali from Lahore", product: "Sapphire Men's Wool Shawl" },
-            { name: "Sana from Islamabad", product: "Chiffon Maxi Suit (Red)" },
-            { name: "Hamza from Karachi", product: "Electric Juicer Blender" },
-            { name: "Usman from Faisalabad", product: "Korean Wedding Ring" }
-        ];
-        setInterval(() => {
-            const popup = document.getElementById('salesPopup');
-            const randomSale = fakeSales[Math.floor(Math.random() * fakeSales.length)];
-            document.getElementById('popupText').innerText = `${randomSale.name} bought ${randomSale.product}`;
-            popup.classList.remove('hidden');
-            popup.classList.add('flex', 'popup-animate');
-            setTimeout(() => {
-                popup.classList.add('hidden');
-                popup.classList.remove('flex', 'popup-animate');
-            }, 5000);
-        }, 12000);
+        function submitUserReview() {
+            const name = document.getElementById('revName').value.trim();
+            const msg = document.getElementById('revMsg').value.trim();
+            if(!name || !msg) { alert("Please fill name and review!"); return; }
+            
+            const container = document.getElementById('reviewsContainer');
+            const newRev = document.createElement('div');
+            newRev.className = "bg-zinc-900 border border-zinc-800 p-4 rounded-xl space-y-2";
+            newRev.innerHTML = `<div class="flex justify-between items-center">
+                <span class="font-bold text-xs text-white">${name} <span class="text-emerald-400 text-[10px] font-normal">✔ Verified Buyer</span></span>
+                <span class="text-amber-400 text-xs">⭐⭐⭐⭐⭐</span>
+            </div>
+            <p class="text-xs text-zinc-300">"${msg}"</p>`;
+            container.prepend(newRev);
+            document.getElementById('revName').value = '';
+            document.getElementById('revMsg').value = '';
+            alert('Review submitted successfully!');
+        }
 
         let selectedProduct = "";
         let selectedPrice = 0;
         let finalPrice = 0;
 
-        function openCheckout(name, price) {
+        function openCheckout(name, price, hasVariant) {
             selectedProduct = name;
             selectedPrice = price;
             finalPrice = price;
             document.getElementById('modalProductName').innerText = name;
             document.getElementById('modalProductPrice').innerText = 'Total Amount: Rs. ' + price + ' PKR';
+            
+            const varEl = document.getElementById('variantSelector');
+            if(hasVariant) varEl.classList.remove('hidden'); else varEl.classList.add('hidden');
+
             document.getElementById('couponMsg').classList.add('hidden');
             document.getElementById('couponCode').value = '';
             document.getElementById('checkoutModal').classList.remove('hidden');
@@ -525,9 +611,13 @@
             const phone = document.getElementById('custPhone').value;
             const city = document.getElementById('custCity').value;
             const address = document.getElementById('custAddress').value;
+            const size = document.getElementById('selectedSize').value;
 
             let msg = `*NEW ORDER - NOVA MART*\n\n`;
             msg += `*Product:* ${selectedProduct}\n`;
+            if(!document.getElementById('variantSelector').classList.contains('hidden')) {
+                msg += `*Size Selected:* ${size}\n`;
+            }
             msg += `*Final Price:* Rs. ${finalPrice} PKR\n`;
             msg += `*Payment:* Cash on Delivery\n\n`;
             msg += `*Customer Info:*\n`;
@@ -536,8 +626,7 @@
             msg += `- City: ${city}\n`;
             msg += `- Address: ${address}`;
 
-            const myNumber = "923271213219";
-            window.open(`https://wa.me/${myNumber}?text=` + encodeURIComponent(msg), '_blank');
+            window.open(`https://wa.me/923271213219?text=` + encodeURIComponent(msg), '_blank');
         }
     </script>
 </body>
