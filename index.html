@@ -15,9 +15,6 @@
         .filter-btn.active { background-color: #ccff00; color: #000000; border-color: #ccff00; }
         @keyframes pulse-fast { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
         .pulse-text { animation: pulse-fast 1.5s infinite; }
-        .popup-animate { animation: slideIn 0.5s forwards, fadeOut 0.5s 4.5s forwards; }
-        @keyframes slideIn { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; transform: translateY(100%); } }
     </style>
 </head>
 <body class="bg-[#121212] text-white pb-16 md:pb-0">
@@ -41,7 +38,6 @@
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span id="cartBadge" class="absolute -top-2 -right-2 bg-[#ccff00] text-black text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
                 </button>
-                <a href="https://www.instagram.com/novam_artonline" target="_blank" class="hover:text-[#ccff00] hidden md:inline"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </div>
     </nav>
@@ -158,6 +154,7 @@
                     <div class="flex space-x-1.5 p-2 bg-zinc-900/80 overflow-x-auto">
                         <img src="1791656394111.jpg" onclick="changeImage('p1-main-img', '1791656394111.jpg')" class="w-8 h-8 object-cover rounded border border-zinc-700 cursor-pointer hover:border-[#ccff00]">
                         <img src="1791656551138.jpg" onclick="changeImage('p1-main-img', '1791656551138.jpg')" class="w-8 h-8 object-cover rounded border border-zinc-700 cursor-pointer hover:border-[#ccff00]">
+                        <img src="1791656561857.jpg" onclick="changeImage('p1-main-img', '1791656561857.jpg')" class="w-8 h-8 object-cover rounded border border-zinc-700 cursor-pointer hover:border-[#ccff00]">
                     </div>
                     <div class="p-3">
                         <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">Sapphire Men's Wool Shawl</h3>
@@ -170,7 +167,7 @@
                 </div>
                 <div class="p-3 pt-0 space-y-2">
                     <div class="grid grid-cols-2 gap-1.5">
-                        <button onclick="openCheckout('Sapphire Mens Wool Shawl', 2328)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
+                        <button onclick="openCheckout('Sapphire Mens Wool Shawl', 2328, true)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
                         <button onclick="addToCart('Sapphire Mens Wool Shawl', 2328)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
                     </div>
                 </div>
@@ -183,6 +180,10 @@
                         <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">Sale</span>
                         <img id="p2-main-img" src="1791656551138.jpg" class="w-full h-44 md:h-60 object-cover cursor-pointer" onclick="zoomImage(this.src)" alt="Chiffon Maxi Suit Red">
                     </div>
+                    <div class="flex space-x-1.5 p-2 bg-zinc-900/80 overflow-x-auto">
+                        <img src="1791656551138.jpg" onclick="changeImage('p2-main-img', '1791656551138.jpg')" class="w-8 h-8 object-cover rounded border border-zinc-700 cursor-pointer hover:border-[#ccff00]">
+                        <img src="1791656561857.jpg" onclick="changeImage('p2-main-img', '1791656561857.jpg')" class="w-8 h-8 object-cover rounded border border-zinc-700 cursor-pointer hover:border-[#ccff00]">
+                    </div>
                     <div class="p-3">
                         <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">Chiffon Maxi Suit (Red)</h3>
                         <p class="text-[10px] text-emerald-400 font-semibold mt-0.5">✔ In Stock</p>
@@ -194,7 +195,7 @@
                 </div>
                 <div class="p-3 pt-0 space-y-2">
                     <div class="grid grid-cols-2 gap-1.5">
-                        <button onclick="openCheckout('Chiffon Maxi Suit (Red)', 2658)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
+                        <button onclick="openCheckout('Chiffon Maxi Suit (Red)', 2658, true)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
                         <button onclick="addToCart('Chiffon Maxi Suit (Red)', 2658)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
                     </div>
                 </div>
@@ -205,7 +206,11 @@
                 <div>
                     <div class="relative">
                         <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">Sale</span>
-                        <img src="1791656561857.jpg" class="w-full h-44 md:h-60 object-cover cursor-pointer" onclick="zoomImage(this.src)" alt="Chiffon Maxi Suit Black">
+                        <img id="p3-main-img" src="1791656561857.jpg" class="w-full h-44 md:h-60 object-cover cursor-pointer" onclick="zoomImage(this.src)" alt="Chiffon Maxi Suit Black">
+                    </div>
+                    <div class="flex space-x-1.5 p-2 bg-zinc-900/80 overflow-x-auto">
+                        <img src="1791656561857.jpg" onclick="changeImage('p3-main-img', '1791656561857.jpg')" class="w-8 h-8 object-cover rounded border border-zinc-700 cursor-pointer hover:border-[#ccff00]">
+                        <img src="1791656551138.jpg" onclick="changeImage('p3-main-img', '1791656551138.jpg')" class="w-8 h-8 object-cover rounded border border-zinc-700 cursor-pointer hover:border-[#ccff00]">
                     </div>
                     <div class="p-3">
                         <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">Chiffon Maxi Suit (Black)</h3>
@@ -218,7 +223,7 @@
                 </div>
                 <div class="p-3 pt-0 space-y-2">
                     <div class="grid grid-cols-2 gap-1.5">
-                        <button onclick="openCheckout('Chiffon Maxi Suit (Black)', 2658)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
+                        <button onclick="openCheckout('Chiffon Maxi Suit (Black)', 2658, true)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
                         <button onclick="addToCart('Chiffon Maxi Suit (Black)', 2658)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
                     </div>
                 </div>
@@ -242,7 +247,7 @@
                 </div>
                 <div class="p-3 pt-0 space-y-2">
                     <div class="grid grid-cols-2 gap-1.5">
-                        <button onclick="openCheckout('Electric Juicer Blender', 2018)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
+                        <button onclick="openCheckout('Electric Juicer Blender', 2018, false)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
                         <button onclick="addToCart('Electric Juicer Blender', 2018)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
                     </div>
                 </div>
@@ -266,7 +271,7 @@
                 </div>
                 <div class="p-3 pt-0 space-y-2">
                     <div class="grid grid-cols-2 gap-1.5">
-                        <button onclick="openCheckout('Cute Cat Wall Mount Hooks', 1458)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
+                        <button onclick="openCheckout('Cute Cat Wall Mount Hooks', 1458, false)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
                         <button onclick="addToCart('Cute Cat Wall Mount Hooks', 1458)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
                     </div>
                 </div>
@@ -290,7 +295,7 @@
                 </div>
                 <div class="p-3 pt-0 space-y-2">
                     <div class="grid grid-cols-2 gap-1.5">
-                        <button onclick="openCheckout('Korean Style Wedding Ring', 1364)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
+                        <button onclick="openCheckout('Korean Style Wedding Ring', 1364, false)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
                         <button onclick="addToCart('Korean Style Wedding Ring', 1364)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
                     </div>
                 </div>
@@ -320,6 +325,14 @@
                 </div>
                 <p class="text-xs text-zinc-300">"Chiffon Maxi Suit red wala bohat pyara hy. Fabric boht zabardast hy."</p>
             </div>
+        </div>
+
+        <!-- Add Review Box -->
+        <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-xl space-y-3">
+            <h3 class="text-sm font-bold text-white">Leave a Review</h3>
+            <input type="text" id="revName" placeholder="Your Name" class="w-full p-2.5 rounded bg-zinc-800 text-white text-xs border border-zinc-700 focus:outline-none focus:border-[#ccff00]">
+            <textarea id="revMsg" placeholder="Write your review..." rows="2" class="w-full p-2.5 rounded bg-zinc-800 text-white text-xs border border-zinc-700 focus:outline-none focus:border-[#ccff00]"></textarea>
+            <button onclick="submitUserReview()" class="btn-neon px-4 py-2 rounded text-xs uppercase font-bold">Submit Review</button>
         </div>
     </section>
 
@@ -381,17 +394,37 @@
         <img id="modalImage" src="" class="max-w-full max-h-[85vh] rounded-lg object-contain">
     </div>
 
-    <!-- Checkout Modal -->
+    <!-- Checkout Modal With Size & Promo Code Support -->
     <div id="checkoutModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4">
         <div class="bg-zinc-900 border border-zinc-700 rounded-xl max-w-md w-full p-6 relative shadow-2xl">
             <button onclick="closeCheckout()" class="absolute top-4 right-4 text-zinc-400 hover:text-white text-2xl font-bold">&times;</button>
             <h3 class="text-lg font-bold text-white mb-1" id="modalProductName">Complete Your Order</h3>
-            <p class="text-sm text-[#ccff00] font-black mb-4" id="modalProductPrice"></p>
+            <p class="text-sm text-[#ccff00] font-black mb-3" id="modalProductPrice"></p>
+            
             <form id="orderForm" onsubmit="handleOrder(event)" class="space-y-3">
+                <!-- Size Variant Selector -->
+                <div id="variantSelector" class="hidden text-xs space-y-1">
+                    <label class="font-bold text-zinc-300">Select Size:</label>
+                    <select id="selectedSize" class="w-full p-2.5 rounded bg-zinc-800 text-white border border-zinc-700 focus:outline-none focus:border-[#ccff00]">
+                        <option value="Small">Small (S)</option>
+                        <option value="Medium" selected>Medium (M)</option>
+                        <option value="Large">Large (L)</option>
+                        <option value="XL">Extra Large (XL)</option>
+                    </select>
+                </div>
+
                 <input type="text" id="custName" placeholder="Full Name (پورا نام)" required class="w-full p-3 rounded bg-zinc-800 text-white border border-zinc-700 text-sm focus:outline-none focus:border-[#ccff00]">
                 <input type="tel" id="custPhone" placeholder="WhatsApp Number" required class="w-full p-3 rounded bg-zinc-800 text-white border border-zinc-700 text-sm focus:outline-none focus:border-[#ccff00]">
                 <input type="text" id="custCity" placeholder="City" required class="w-full p-3 rounded bg-zinc-800 text-white border border-zinc-700 text-sm focus:outline-none focus:border-[#ccff00]">
                 <textarea id="custAddress" placeholder="Complete Address" rows="2" required class="w-full p-3 rounded bg-zinc-800 text-white border border-zinc-700 text-sm focus:outline-none focus:border-[#ccff00]"></textarea>
+
+                <!-- Promo Coupon Code Field -->
+                <div class="flex space-x-2">
+                    <input type="text" id="couponCode" placeholder="Promo Code (Use: NOVA10)" class="w-full p-2.5 rounded bg-zinc-800 text-white border border-zinc-700 text-xs focus:outline-none focus:border-[#ccff00]">
+                    <button type="button" onclick="applyCoupon()" class="bg-zinc-700 hover:bg-zinc-600 px-4 py-2 rounded text-xs font-bold text-[#ccff00]">Apply</button>
+                </div>
+                <p id="couponMsg" class="text-[10px] hidden font-bold"></p>
+
                 <button type="submit" class="w-full btn-neon font-black py-3 rounded text-sm uppercase shadow-lg">Confirm Order via WhatsApp 🚀</button>
             </form>
         </div>
@@ -441,6 +474,20 @@
             } else {
                 alert("Voice Search is not supported on your browser.");
             }
+        }
+
+        function submitUserReview() {
+            const name = document.getElementById('revName').value.trim();
+            const msg = document.getElementById('revMsg').value.trim();
+            if(!name || !msg) { alert("Please fill name and review!"); return; }
+            const container = document.getElementById('reviewsContainer');
+            const newRev = document.createElement('div');
+            newRev.className = "bg-zinc-900 border border-zinc-800 p-4 rounded-xl space-y-2";
+            newRev.innerHTML = `<div class="flex justify-between items-center"><span class="font-bold text-xs text-white">${name} <span class="text-emerald-400 text-[10px]">✔ Verified</span></span><span class="text-amber-400 text-xs">⭐⭐⭐⭐⭐</span></div><p class="text-xs text-zinc-300">"${msg}"</p>`;
+            container.prepend(newRev);
+            document.getElementById('revName').value = '';
+            document.getElementById('revMsg').value = '';
+            alert('Review submitted successfully!');
         }
 
         let cart = [];
@@ -516,14 +563,35 @@
             });
         }
 
-        let selectedProduct = ""; let selectedPrice = 0;
-        function openCheckout(name, price) {
-            selectedProduct = name; selectedPrice = price;
+        let selectedProduct = ""; let selectedPrice = 0; let finalPrice = 0;
+        function openCheckout(name, price, hasSize) {
+            selectedProduct = name; selectedPrice = price; finalPrice = price;
             document.getElementById('modalProductName').innerText = name;
             document.getElementById('modalProductPrice').innerText = 'Total Amount: Rs. ' + price + ' PKR';
+            
+            const varEl = document.getElementById('variantSelector');
+            if(hasSize) varEl.classList.remove('hidden'); else varEl.classList.add('hidden');
+
+            document.getElementById('couponMsg').classList.add('hidden');
+            document.getElementById('couponCode').value = '';
             document.getElementById('checkoutModal').classList.remove('hidden');
         }
+
         function closeCheckout() { document.getElementById('checkoutModal').classList.add('hidden'); }
+
+        function applyCoupon() {
+            const code = document.getElementById('couponCode').value.trim();
+            const msg = document.getElementById('couponMsg');
+            if(code.toUpperCase() === "NOVA10") {
+                finalPrice = Math.round(selectedPrice * 0.9);
+                msg.innerText = "✓ Promo NOVA10 applied! 10% OFF";
+                msg.className = "text-[10px] text-emerald-400 font-bold block";
+                document.getElementById('modalProductPrice').innerText = 'Total Amount: Rs. ' + finalPrice + ' PKR (10% Discounted)';
+            } else {
+                msg.innerText = "✗ Invalid Promo Code";
+                msg.className = "text-[10px] text-red-400 font-bold block";
+            }
+        }
 
         function handleOrder(e) {
             e.preventDefault();
@@ -531,8 +599,16 @@
             const phone = document.getElementById('custPhone').value;
             const city = document.getElementById('custCity').value;
             const address = document.getElementById('custAddress').value;
+            const size = document.getElementById('selectedSize').value;
 
-            let msg = `*NEW ORDER - NOVA MART*\n\n*Product:* ${selectedProduct}\n*Price:* Rs. ${selectedPrice} PKR\n\n*Customer Info:*\n- Name: ${name}\n- Phone: ${phone}\n- City: ${city}\n- Address: ${address}`;
+            let msg = `*NEW ORDER - NOVA MART*\n\n`;
+            msg += `*Product:* ${selectedProduct}\n`;
+            if(!document.getElementById('variantSelector').classList.contains('hidden')) {
+                msg += `*Size:* ${size}\n`;
+            }
+            msg += `*Price:* Rs. ${finalPrice} PKR\n\n`;
+            msg += `*Customer Info:*\n- Name: ${name}\n- Phone: ${phone}\n- City: ${city}\n- Address: ${address}`;
+
             window.open(`https://wa.me/923271213219?text=` + encodeURIComponent(msg), '_blank');
         }
     </script>
