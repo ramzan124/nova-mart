@@ -107,8 +107,9 @@
             </div>
         </div>
 
-        <!-- Products Grid -->
+        <!-- Products Grid (All 6 products restored) -->
         <div class="grid grid-cols-2 gap-4" id="productsGrid">
+
             <!-- Product 1 -->
             <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="clothing" data-title="sapphire mens wool shawl">
                 <div>
@@ -134,15 +135,131 @@
                     <button onclick="addToCart('Sapphire Mens Wool Shawl', 2328)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
                 </div>
             </div>
-            <!-- More products can be rendered dynamically or statically -->
+
+            <!-- Product 2 -->
+            <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="clothing" data-title="chiffon maxi suit red">
+                <div>
+                    <div class="relative">
+                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">Sale</span>
+                        <img id="p2-main-img" src="1791656551138.jpg" class="w-full h-44 md:h-60 object-cover cursor-pointer" onclick="zoomImage(this.src)">
+                    </div>
+                    <div class="flex space-x-1.5 p-2 bg-zinc-900/80 overflow-x-auto">
+                        <img src="1791656551138.jpg" onclick="changeImage('p2-main-img', '1791656551138.jpg')" class="w-8 h-8 object-cover rounded border border-zinc-700 cursor-pointer hover:border-[#ccff00]">
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">Chiffon Maxi Suit (Red)</h3>
+                        <p class="text-[10px] text-emerald-400 font-semibold mt-0.5">✔ In Stock</p>
+                        <div class="mt-2 flex flex-col">
+                            <span class="text-[10px] text-zinc-500 line-through">Rs. 3,500 PKR</span>
+                            <span class="text-sm md:text-base font-black text-[#ccff00]">Rs. 2,658 PKR</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-3 pt-0 grid grid-cols-2 gap-1.5">
+                    <button onclick="openCheckout('Chiffon Maxi Suit (Red)', 2658, true)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
+                    <button onclick="addToCart('Chiffon Maxi Suit (Red)', 2658)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="clothing" data-title="chiffon maxi suit black">
+                <div>
+                    <div class="relative">
+                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">Sale</span>
+                        <img id="p3-main-img" src="1791656561857.jpg" class="w-full h-44 md:h-60 object-cover cursor-pointer" onclick="zoomImage(this.src)">
+                    </div>
+                    <div class="flex space-x-1.5 p-2 bg-zinc-900/80 overflow-x-auto">
+                        <img src="1791656561857.jpg" onclick="changeImage('p3-main-img', '1791656561857.jpg')" class="w-8 h-8 object-cover rounded border border-zinc-700 cursor-pointer hover:border-[#ccff00]">
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">Chiffon Maxi Suit (Black)</h3>
+                        <p class="text-[10px] text-emerald-400 font-semibold mt-0.5">✔ In Stock</p>
+                        <div class="mt-2 flex flex-col">
+                            <span class="text-[10px] text-zinc-500 line-through">Rs. 3,500 PKR</span>
+                            <span class="text-sm md:text-base font-black text-[#ccff00]">Rs. 2,658 PKR</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-3 pt-0 grid grid-cols-2 gap-1.5">
+                    <button onclick="openCheckout('Chiffon Maxi Suit (Black)', 2658, true)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
+                    <button onclick="addToCart('Chiffon Maxi Suit (Black)', 2658)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="gadgets" data-title="electric juicer blender">
+                <div>
+                    <div class="relative">
+                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">Sale</span>
+                        <img src="1791656759396.jpg" class="w-full h-44 md:h-60 object-cover cursor-pointer" onclick="zoomImage(this.src)">
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">Electric Juicer Blender</h3>
+                        <p class="text-[10px] text-emerald-400 font-semibold mt-0.5">✔ Best Seller</p>
+                        <div class="mt-2 flex flex-col">
+                            <span class="text-[10px] text-zinc-500 line-through">Rs. 2,800 PKR</span>
+                            <span class="text-sm md:text-base font-black text-[#ccff00]">Rs. 2,018 PKR</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-3 pt-0 grid grid-cols-2 gap-1.5">
+                    <button onclick="openCheckout('Electric Juicer Blender', 2018, false)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
+                    <button onclick="addToCart('Electric Juicer Blender', 2018)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="jewelry" data-title="cute cat wall mount hooks">
+                <div>
+                    <div class="relative">
+                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">Sale</span>
+                        <img src="1791656922043.jpg" class="w-full h-44 md:h-60 object-cover cursor-pointer" onclick="zoomImage(this.src)">
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">Cute Cat Wall Mount Hooks</h3>
+                        <p class="text-[10px] text-emerald-400 font-semibold mt-0.5">✔ In Stock</p>
+                        <div class="mt-2 flex flex-col">
+                            <span class="text-[10px] text-zinc-500 line-through">Rs. 2,000 PKR</span>
+                            <span class="text-sm md:text-base font-black text-[#ccff00]">Rs. 1,458 PKR</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-3 pt-0 grid grid-cols-2 gap-1.5">
+                    <button onclick="openCheckout('Cute Cat Wall Mount Hooks', 1458, false)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
+                    <button onclick="addToCart('Cute Cat Wall Mount Hooks', 1458)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="jewelry" data-title="korean wedding ring diamond">
+                <div>
+                    <div class="relative">
+                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">Sale</span>
+                        <img src="1791657049968.jpg" class="w-full h-44 md:h-60 object-cover cursor-pointer" onclick="zoomImage(this.src)">
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">Korean Wedding Ring</h3>
+                        <p class="text-[10px] text-emerald-400 font-semibold mt-0.5">✔ In Stock</p>
+                        <div class="mt-2 flex flex-col">
+                            <span class="text-[10px] text-zinc-500 line-through">Rs. 1,900 PKR</span>
+                            <span class="text-sm md:text-base font-black text-[#ccff00]">Rs. 1,364 PKR</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-3 pt-0 grid grid-cols-2 gap-1.5">
+                    <button onclick="openCheckout('Korean Style Wedding Ring', 1364, false)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
+                    <button onclick="addToCart('Korean Style Wedding Ring', 1364)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
+                </div>
+            </div>
+
         </div>
     </main>
 
-    <!-- Admin Product Upload Panel Section -->
+    <!-- Admin Product Upload Panel With DIRECT IMAGE FILE UPLOAD -->
     <section id="adminPanel" class="max-w-4xl mx-auto px-4 py-8 border-t border-zinc-800">
         <div class="bg-zinc-900 border border-zinc-700 rounded-xl p-6 shadow-2xl space-y-4">
-            <h2 class="text-lg font-black text-white uppercase tracking-wider border-l-4 border-[#ccff00] pl-3">➕ Admin Panel: Add New Product</h2>
-            <p class="text-xs text-zinc-400">Google Sheet میں نئی پروڈکٹ (ٹائٹل، قیمت، کلرز اور 1 سے 7 تصاویر کے لنکس کے ساتھ) براہِ راست اپ لوڈ کریں:</p>
+            <h2 class="text-lg font-black text-white uppercase tracking-wider border-l-4 border-[#ccff00] pl-3">➕ Admin Panel: Direct Image Upload</h2>
+            <p class="text-xs text-zinc-400">موبایل سے ڈائریکٹ تصاویر سلیکٹ کریں (1 سے 7 تک)، نام، قیمت اور تفصیل لکھ کر گوگل شیٹ میں اپ لوڈ کریں:</p>
             
             <form id="adminUploadForm" onsubmit="handleAdminUpload(event)" class="space-y-3 text-xs">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -176,16 +293,37 @@
                     <textarea id="adminDesc" placeholder="Write product description..." rows="2" class="w-full p-2.5 rounded bg-zinc-800 text-white border border-zinc-700 mt-1 focus:outline-none focus:border-[#ccff00]"></textarea>
                 </div>
 
-                <!-- 1 to 7 Image Links Inputs -->
+                <!-- Direct Image File Selectors (1 to 7) -->
                 <div class="space-y-2 border-t border-zinc-800 pt-3">
-                    <label class="font-bold text-[#ccff00]">Image URLs (Up to 7 Images from PostImages / ImgBB):</label>
-                    <input type="url" id="img1" placeholder="Image URL 1 (Main Image - Required)" required class="w-full p-2 rounded bg-zinc-800 text-white border border-zinc-700">
-                    <input type="url" id="img2" placeholder="Image URL 2" class="w-full p-2 rounded bg-zinc-800 text-white border border-zinc-700">
-                    <input type="url" id="img3" placeholder="Image URL 3" class="w-full p-2 rounded bg-zinc-800 text-white border border-zinc-700">
-                    <input type="url" id="img4" placeholder="Image URL 4" class="w-full p-2 rounded bg-zinc-800 text-white border border-zinc-700">
-                    <input type="url" id="img5" placeholder="Image URL 5" class="w-full p-2 rounded bg-zinc-800 text-white border border-zinc-700">
-                    <input type="url" id="img6" placeholder="Image URL 6" class="w-full p-2 rounded bg-zinc-800 text-white border border-zinc-700">
-                    <input type="url" id="img7" placeholder="Image URL 7" class="w-full p-2 rounded bg-zinc-800 text-white border border-zinc-700">
+                    <label class="font-bold text-[#ccff00]">Select Images from Device (Up to 7 Images):</label>
+                    <div>
+                        <span class="text-[10px] text-zinc-400">Main Image (Required):</span>
+                        <input type="file" id="imgFile1" accept="image/*" required class="w-full p-2 rounded bg-zinc-800 text-white border border-zinc-700 file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:font-bold file:bg-[#ccff00] file:text-black mt-1">
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-zinc-400">Image 2:</span>
+                        <input type="file" id="imgFile2" accept="image/*" class="w-full p-2 rounded bg-zinc-800 text-white border border-zinc-700 file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:font-bold file:bg-zinc-700 file:text-white mt-1">
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-zinc-400">Image 3:</span>
+                        <input type="file" id="imgFile3" accept="image/*" class="w-full p-2 rounded bg-zinc-800 text-white border border-zinc-700 file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:font-bold file:bg-zinc-700 file:text-white mt-1">
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-zinc-400">Image 4:</span>
+                        <input type="file" id="imgFile4" accept="image/*" class="w-full p-2 rounded bg-zinc-800 text-white border border-zinc-700 file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:font-bold file:bg-zinc-700 file:text-white mt-1">
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-zinc-400">Image 5:</span>
+                        <input type="file" id="imgFile5" accept="image/*" class="w-full p-2 rounded bg-zinc-800 text-white border border-zinc-700 file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:font-bold file:bg-zinc-700 file:text-white mt-1">
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-zinc-400">Image 6:</span>
+                        <input type="file" id="imgFile6" accept="image/*" class="w-full p-2 rounded bg-zinc-800 text-white border border-zinc-700 file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:font-bold file:bg-zinc-700 file:text-white mt-1">
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-zinc-400">Image 7:</span>
+                        <input type="file" id="imgFile7" accept="image/*" class="w-full p-2 rounded bg-zinc-800 text-white border border-zinc-700 file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:font-bold file:bg-zinc-700 file:text-white mt-1">
+                    </div>
                 </div>
 
                 <div class="flex items-center space-x-2 pt-2">
@@ -331,44 +469,73 @@
             }).catch(() => { alert("Order sent via WhatsApp!"); });
         }
 
-        // Admin Product Upload Function
-        function handleAdminUpload(e) {
+        // Helper function to convert image file to Base64
+        function convertFileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                if (!file) { resolve(""); return; }
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        // Admin Product Upload Function with Direct File Selectors
+        async function handleAdminUpload(e) {
             e.preventDefault();
             const btn = document.getElementById('adminSubmitBtn');
-            btn.innerText = "Uploading to Google Sheet...";
+            btn.innerText = "Uploading Images & Product...";
             btn.disabled = true;
 
-            const productData = {
-                action: "addProduct",
-                Name: document.getElementById('adminName').value,
-                Price: document.getElementById('adminPrice').value,
-                Category: document.getElementById('adminCategory').value,
-                Description: document.getElementById('adminDesc').value,
-                Colors: document.getElementById('adminColors').value,
-                Image1: document.getElementById('img1').value,
-                Image2: document.getElementById('img2').value,
-                Image3: document.getElementById('img3').value,
-                Image4: document.getElementById('img4').value,
-                Image5: document.getElementById('img5').value,
-                Image6: document.getElementById('img6').value,
-                Image7: document.getElementById('img7').value,
-                HasSizes: document.getElementById('adminHasSizes').checked ? "TRUE" : "FALSE"
-            };
+            try {
+                const img1File = document.getElementById('imgFile1').files[0];
+                const img2File = document.getElementById('imgFile2').files[0];
+                const img3File = document.getElementById('imgFile3').files[0];
+                const img4File = document.getElementById('imgFile4').files[0];
+                const img5File = document.getElementById('imgFile5').files[0];
+                const img6File = document.getElementById('imgFile6').files[0];
+                const img7File = document.getElementById('imgFile7').files[0];
 
-            fetch(GOOGLE_SHEET_WEB_APP_URL, {
-                method: 'POST', mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(productData)
-            }).then(() => {
-                alert("Product successfully uploaded to Google Sheet (`Products` tab)!");
+                const img1 = await convertFileToBase64(img1File);
+                const img2 = await convertFileToBase64(img2File);
+                const img3 = await convertFileToBase64(img3File);
+                const img4 = await convertFileToBase64(img4File);
+                const img5 = await convertFileToBase64(img5File);
+                const img6 = await convertFileToBase64(img6File);
+                const img7 = await convertFileToBase64(img7File);
+
+                const productData = {
+                    action: "addProduct",
+                    Name: document.getElementById('adminName').value,
+                    Price: document.getElementById('adminPrice').value,
+                    Category: document.getElementById('adminCategory').value,
+                    Description: document.getElementById('adminDesc').value,
+                    Colors: document.getElementById('adminColors').value,
+                    Image1: img1,
+                    Image2: img2,
+                    Image3: img3,
+                    Image4: img4,
+                    Image5: img5,
+                    Image6: img6,
+                    Image7: img7,
+                    HasSizes: document.getElementById('adminHasSizes').checked ? "TRUE" : "FALSE"
+                };
+
+                await fetch(GOOGLE_SHEET_WEB_APP_URL, {
+                    method: 'POST', mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(productData)
+                });
+
+                alert("Product and direct images successfully uploaded to Google Sheet!");
                 document.getElementById('adminUploadForm').reset();
                 btn.innerText = "Upload Product to Google Sheet 🚀";
                 btn.disabled = false;
-            }).catch(err => {
-                alert("Error uploading product!");
+            } catch (err) {
+                alert("Error uploading images/product.");
                 btn.innerText = "Upload Product to Google Sheet 🚀";
                 btn.disabled = false;
-            });
+            }
         }
     </script>
 </body>
