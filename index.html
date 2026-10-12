@@ -141,7 +141,7 @@
             </div>
         </div>
 
-        <!-- Products Grid (ALL 6 PRODUCTS) -->
+        <!-- Products Grid -->
         <div class="grid grid-cols-2 gap-4" id="productsGrid">
 
             <!-- Product 1 -->
@@ -370,7 +370,7 @@
         </div>
     </div>
 
-    <!-- Footer with All Social Media Links -->
+    <!-- Footer -->
     <footer id="footer" class="bg-[#121212] border-t border-zinc-800 mt-12 py-8 text-center text-xs text-zinc-500 space-y-4">
         <div class="flex justify-center items-center space-x-4 text-zinc-400 text-xs font-bold pb-2 border-b border-zinc-800/50 max-w-xs mx-auto">
             <span>📦 Cash on Delivery</span>
@@ -394,7 +394,7 @@
         <img id="modalImage" src="" class="max-w-full max-h-[85vh] rounded-lg object-contain">
     </div>
 
-    <!-- Checkout Modal With Size & Promo Code Support -->
+    <!-- Checkout Modal With Size, Promo Code & Google Sheets Logging -->
     <div id="checkoutModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4">
         <div class="bg-zinc-900 border border-zinc-700 rounded-xl max-w-md w-full p-6 relative shadow-2xl">
             <button onclick="closeCheckout()" class="absolute top-4 right-4 text-zinc-400 hover:text-white text-2xl font-bold">&times;</button>
@@ -406,6 +406,7 @@
                 <div id="variantSelector" class="hidden text-xs space-y-1">
                     <label class="font-bold text-zinc-300">Select Size:</label>
                     <select id="selectedSize" class="w-full p-2.5 rounded bg-zinc-800 text-white border border-zinc-700 focus:outline-none focus:border-[#ccff00]">
+                        <option value="Standard">Standard</option>
                         <option value="Small">Small (S)</option>
                         <option value="Medium" selected>Medium (M)</option>
                         <option value="Large">Large (L)</option>
@@ -425,13 +426,15 @@
                 </div>
                 <p id="couponMsg" class="text-[10px] hidden font-bold"></p>
 
-                <button type="submit" class="w-full btn-neon font-black py-3 rounded text-sm uppercase shadow-lg">Confirm Order via WhatsApp 🚀</button>
+                <button type="submit" id="submitBtn" class="w-full btn-neon font-black py-3 rounded text-sm uppercase shadow-lg">Confirm Order via WhatsApp 🚀</button>
             </form>
         </div>
     </div>
 
     <!-- Scripts -->
     <script>
+        const GOOGLE_SHEET_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx5VpHxO2VCAplYUtc7JN3YbQ_4tr3Vz_rho9lGQCSxhQ9f_JEogNLJtzkOzydojnl1CQ/exec";
+
         function toggleMenu() { document.getElementById('sideMenu').classList.toggle('-translate-x-full'); }
         function openCartDrawer() { document.getElementById('cartDrawer').classList.toggle('translate-x-full'); }
 
@@ -595,21 +598,49 @@
 
         function handleOrder(e) {
             e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "Processing Order...";
+            btn.disabled = true;
+
             const name = document.getElementById('custName').value;
             const phone = document.getElementById('custPhone').value;
             const city = document.getElementById('custCity').value;
             const address = document.getElementById('custAddress').value;
-            const size = document.getElementById('selectedSize').value;
+            const size = document.getElementById('variantSelector').classList.contains('hidden') ? "N/A" : document.getElementById('selectedSize').value;
 
-            let msg = `*NEW ORDER - NOVA MART*\n\n`;
-            msg += `*Product:* ${selectedProduct}\n`;
-            if(!document.getElementById('variantSelector').classList.contains('hidden')) {
-                msg += `*Size:* ${size}\n`;
-            }
-            msg += `*Price:* Rs. ${finalPrice} PKR\n\n`;
-            msg += `*Customer Info:*\n- Name: ${name}\n- Phone: ${phone}\n- City: ${city}\n- Address: ${address}`;
+            const orderPayload = {
+                CustomerName: name,
+                PhoneNumber: phone,
+                City: city,
+                Address: address,
+                Product: selectedProduct,
+                Size: size,
+                TotalPrice: finalPrice
+            };
 
-            window.open(`https://wa.me/923271213219?text=` + encodeURIComponent(msg), '_blank');
+            // Log order to Google Sheets via Web App
+            fetch(GOOGLE_SHEET_WEB_APP_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(orderPayload)
+            }).then(() => {
+                let msg = `*NEW ORDER - NOVA MART*\n\n`;
+                msg += `*Product:* ${selectedProduct}\n`;
+                if(size !== "N/A") msg += `*Size:* ${size}\n`;
+                msg += `*Price:* Rs. ${finalPrice} PKR\n\n`;
+                msg += `*Customer Info:*\n- Name: ${name}\n- Phone: ${phone}\n- City: ${city}\n- Address: ${address}`;
+
+                window.open(`https://wa.me/923271213219?text=` + encodeURIComponent(msg), '_blank');
+                btn.innerText = "Confirm Order via WhatsApp 🚀";
+                btn.disabled = false;
+                closeCheckout();
+            }).catch(err => {
+                alert("Order submitted to WhatsApp!");
+                window.open(`https://wa.me/923271213219?text=` + encodeURIComponent("Order Request for " + selectedProduct), '_blank');
+                btn.innerText = "Confirm Order via WhatsApp 🚀";
+                btn.disabled = false;
+            });
         }
     </script>
 </body>
