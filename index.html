@@ -12,9 +12,10 @@
         .product-card:hover { border-color: #ccff00; transform: translateY(-3px); }
         .btn-neon { background-color: #ccff00; color: #000000; font-weight: 800; }
         .btn-neon:hover { background-color: #b3e600; }
-        .filter-btn.active { background-color: #ccff00; color: #000000; border-color: #ccff00; }
-        @keyframes pulse-fast { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-        .pulse-text { animation: pulse-fast 1.5s infinite; }
+        .filter-btn.active { background-color: #ccff00; color: #000000; border-color: #ccff00; font-weight: 900; }
+        /* Scrollbar styling for smooth category sliding */
+        .scrollbar-none::-webkit-scrollbar { display: none; }
+        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="bg-[#121212] text-white pb-20 md:pb-0">
@@ -67,7 +68,7 @@
                 <button onclick="openCartDrawer()" class="text-zinc-400 text-2xl">&times;</button>
             </div>
             <div class="bg-zinc-800 p-2.5 rounded-lg mb-4 text-xs space-y-1">
-                <p id="shippingProgressText" class="text-zinc-300 font-bold">Add Rs. 3,000 for FREE Shipping!</p>
+                <p class="text-zinc-300 font-bold">Add Rs. 3,000 for FREE Shipping!</p>
                 <div class="w-full bg-zinc-700 h-2 rounded-full overflow-hidden">
                     <div id="shippingProgressBar" class="bg-[#ccff00] h-full w-0 transition-all duration-300"></div>
                 </div>
@@ -101,16 +102,28 @@
     <main class="max-w-4xl mx-auto px-4 py-8 space-y-6" id="featured">
         <div class="space-y-4 border-b border-zinc-800 pb-4">
             <h2 class="text-xl font-black text-white uppercase tracking-wider border-l-4 border-[#ccff00] pl-3">Featured Collection</h2>
+            
+            <!-- All Categories Filter Buttons -->
+            <div class="flex space-x-2 overflow-x-auto pb-2 text-xs scrollbar-none">
+                <button onclick="filterCategory('all', this)" class="filter-btn active px-4 py-2 rounded-full bg-zinc-800 text-white border border-zinc-700 whitespace-nowrap">🔥 All Products</button>
+                <button onclick="filterCategory('suits', this)" class="filter-btn px-4 py-2 rounded-full bg-zinc-800 text-white border border-zinc-700 whitespace-nowrap">👗 Suits & Dresses</button>
+                <button onclick="filterCategory('clothing', this)" class="filter-btn px-4 py-2 rounded-full bg-zinc-800 text-white border border-zinc-700 whitespace-nowrap">🧥 Men's Clothing & Shawls</button>
+                <button onclick="filterCategory('toys', this)" class="filter-btn px-4 py-2 rounded-full bg-zinc-800 text-white border border-zinc-700 whitespace-nowrap">🧸 Kids Toys & Games</button>
+                <button onclick="filterCategory('kitchen', this)" class="filter-btn px-4 py-2 rounded-full bg-zinc-800 text-white border border-zinc-700 whitespace-nowrap">🍹 Kitchen & Juicers</button>
+                <button onclick="filterCategory('gadgets', this)" class="filter-btn px-4 py-2 rounded-full bg-zinc-800 text-white border border-zinc-700 whitespace-nowrap">⚡ Electronics & Gadgets</button>
+                <button onclick="filterCategory('jewelry', this)" class="filter-btn px-4 py-2 rounded-full bg-zinc-800 text-white border border-zinc-700 whitespace-nowrap">💍 Jewelry & Accessories</button>
+            </div>
+
             <div class="relative">
                 <input type="text" id="searchInput" onkeyup="searchProducts()" placeholder="Search products..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-700 text-sm text-white focus:outline-none focus:border-[#ccff00]">
                 <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-zinc-500 text-sm"></i>
             </div>
         </div>
 
-        <!-- Products Grid (All 6 products restored) -->
+        <!-- Products Grid (Original Products Restored + Filtering Support) -->
         <div class="grid grid-cols-2 gap-4" id="productsGrid">
 
-            <!-- Product 1 -->
+            <!-- Product 1: Sapphire Wool Shawl -->
             <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="clothing" data-title="sapphire mens wool shawl">
                 <div>
                     <div class="relative">
@@ -136,8 +149,8 @@
                 </div>
             </div>
 
-            <!-- Product 2 -->
-            <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="clothing" data-title="chiffon maxi suit red">
+            <!-- Product 2: Chiffon Maxi Suit (Red) -->
+            <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="suits" data-title="chiffon maxi suit red">
                 <div>
                     <div class="relative">
                         <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">Sale</span>
@@ -145,6 +158,7 @@
                     </div>
                     <div class="flex space-x-1.5 p-2 bg-zinc-900/80 overflow-x-auto">
                         <img src="1791656551138.jpg" onclick="changeImage('p2-main-img', '1791656551138.jpg')" class="w-8 h-8 object-cover rounded border border-zinc-700 cursor-pointer hover:border-[#ccff00]">
+                        <img src="1791656561857.jpg" onclick="changeImage('p2-main-img', '1791656561857.jpg')" class="w-8 h-8 object-cover rounded border border-zinc-700 cursor-pointer hover:border-[#ccff00]">
                     </div>
                     <div class="p-3">
                         <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">Chiffon Maxi Suit (Red)</h3>
@@ -161,8 +175,8 @@
                 </div>
             </div>
 
-            <!-- Product 3 -->
-            <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="clothing" data-title="chiffon maxi suit black">
+            <!-- Product 3: Chiffon Maxi Suit (Black) -->
+            <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="suits" data-title="chiffon maxi suit black">
                 <div>
                     <div class="relative">
                         <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">Sale</span>
@@ -186,8 +200,8 @@
                 </div>
             </div>
 
-            <!-- Product 4 -->
-            <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="gadgets" data-title="electric juicer blender">
+            <!-- Product 4: Electric Juicer Blender -->
+            <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="kitchen" data-title="electric juicer blender">
                 <div>
                     <div class="relative">
                         <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">Sale</span>
@@ -208,7 +222,7 @@
                 </div>
             </div>
 
-            <!-- Product 5 -->
+            <!-- Product 5: Cute Cat Wall Mount Hooks -->
             <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="jewelry" data-title="cute cat wall mount hooks">
                 <div>
                     <div class="relative">
@@ -230,8 +244,8 @@
                 </div>
             </div>
 
-            <!-- Product 6 -->
-            <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="jewelry" data-title="korean wedding ring diamond">
+            <!-- Product 6: Korean Wedding Ring -->
+            <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="jewelry" data-title="korean wedding ring">
                 <div>
                     <div class="relative">
                         <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">Sale</span>
@@ -259,13 +273,13 @@
     <section id="adminPanel" class="max-w-4xl mx-auto px-4 py-8 border-t border-zinc-800">
         <div class="bg-zinc-900 border border-zinc-700 rounded-xl p-6 shadow-2xl space-y-4">
             <h2 class="text-lg font-black text-white uppercase tracking-wider border-l-4 border-[#ccff00] pl-3">➕ Admin Panel: Direct Image Upload</h2>
-            <p class="text-xs text-zinc-400">موبایل سے ڈائریکٹ تصاویر سلیکٹ کریں (1 سے 7 تک)، نام، قیمت اور تفصیل لکھ کر گوگل شیٹ میں اپ لوڈ کریں:</p>
+            <p class="text-xs text-zinc-400">موبائل سے ڈائریکٹ تصاویر سلیکٹ کریں (1 سے 7 تک)، نام، قیمت اور تفصیل لکھ کر گوگل شیٹ اور ویب سائٹ پر اپ لوڈ کریں:</p>
             
             <form id="adminUploadForm" onsubmit="handleAdminUpload(event)" class="space-y-3 text-xs">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
                         <label class="font-bold text-zinc-300">Product Name:</label>
-                        <input type="text" id="adminName" placeholder="e.g. Elegant Watch" required class="w-full p-2.5 rounded bg-zinc-800 text-white border border-zinc-700 mt-1 focus:outline-none focus:border-[#ccff00]">
+                        <input type="text" id="adminName" placeholder="e.g. Remote Control Car / Ladies Suit" required class="w-full p-2.5 rounded bg-zinc-800 text-white border border-zinc-700 mt-1 focus:outline-none focus:border-[#ccff00]">
                     </div>
                     <div>
                         <label class="font-bold text-zinc-300">Price (PKR):</label>
@@ -275,11 +289,14 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
-                        <label class="font-bold text-zinc-300">Category:</label>
+                        <label class="font-bold text-zinc-300">Select Category:</label>
                         <select id="adminCategory" class="w-full p-2.5 rounded bg-zinc-800 text-white border border-zinc-700 mt-1 focus:outline-none focus:border-[#ccff00]">
-                            <option value="clothing">Clothing</option>
-                            <option value="gadgets">Gadgets</option>
-                            <option value="jewelry">Jewelry & Accessories</option>
+                            <option value="suits">Suits & Dresses (سوٹ اور ڈریسز)</option>
+                            <option value="clothing">Clothing & Shawls (کپڑے اور شالیں)</option>
+                            <option value="toys">Kids Toys & Games (بچوں کے کھلونے)</option>
+                            <option value="kitchen">Kitchen & Juicers (کچن آئٹمز)</option>
+                            <option value="gadgets">Electronics & Gadgets (الیکٹرانکس)</option>
+                            <option value="jewelry">Jewelry & Accessories (جیولری)</option>
                         </select>
                     </div>
                     <div>
@@ -402,6 +419,34 @@
         function changeImage(imgId, newSrc) { document.getElementById(imgId).src = newSrc; }
         function zoomImage(src) { window.open(src, '_blank'); }
 
+        // Category Filter Function
+        function filterCategory(cat, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            let cards = document.getElementsByClassName('product-card');
+            for (let i = 0; i < cards.length; i++) {
+                let cardCat = cards[i].getAttribute('data-category');
+                if (cat === 'all' || cardCat === cat) {
+                    cards[i].style.display = "flex";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+
+        function searchProducts() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('product-card');
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].getAttribute('data-title');
+                if (title.includes(input)) {
+                    cards[i].style.display = "flex";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+
         let cart = [];
         function addToCart(name, price) {
             let item = cart.find(i => i.name === name);
@@ -419,6 +464,11 @@
             badge.innerText = totalQty; count.innerText = totalQty;
             let total = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
             totalPriceEl.innerText = "Rs. " + total + " PKR";
+
+            let progressBar = document.getElementById('shippingProgressBar');
+            let percent = (total / 3000) * 100;
+            if(percent > 100) percent = 100;
+            progressBar.style.width = percent + "%";
 
             if(cart.length === 0) { list.innerHTML = `<p class="text-zinc-500 text-center py-8">Your cart is empty.</p>`; return; }
             let html = '';
@@ -480,7 +530,7 @@
             });
         }
 
-        // Admin Product Upload Function with Direct File Selectors
+        // Admin Product Upload Function with Direct File Selectors & Dynamic Grid Addition
         async function handleAdminUpload(e) {
             e.preventDefault();
             const btn = document.getElementById('adminSubmitBtn');
@@ -488,6 +538,13 @@
             btn.disabled = true;
 
             try {
+                const name = document.getElementById('adminName').value;
+                const price = document.getElementById('adminPrice').value;
+                const category = document.getElementById('adminCategory').value;
+                const desc = document.getElementById('adminDesc').value;
+                const colors = document.getElementById('adminColors').value;
+                const hasSizes = document.getElementById('adminHasSizes').checked;
+
                 const img1File = document.getElementById('imgFile1').files[0];
                 const img2File = document.getElementById('imgFile2').files[0];
                 const img3File = document.getElementById('imgFile3').files[0];
@@ -506,19 +563,13 @@
 
                 const productData = {
                     action: "addProduct",
-                    Name: document.getElementById('adminName').value,
-                    Price: document.getElementById('adminPrice').value,
-                    Category: document.getElementById('adminCategory').value,
-                    Description: document.getElementById('adminDesc').value,
-                    Colors: document.getElementById('adminColors').value,
-                    Image1: img1,
-                    Image2: img2,
-                    Image3: img3,
-                    Image4: img4,
-                    Image5: img5,
-                    Image6: img6,
-                    Image7: img7,
-                    HasSizes: document.getElementById('adminHasSizes').checked ? "TRUE" : "FALSE"
+                    Name: name,
+                    Price: price,
+                    Category: category,
+                    Description: desc,
+                    Colors: colors,
+                    Image1: img1, Image2: img2, Image3: img3, Image4: img4, Image5: img5, Image6: img6, Image7: img7,
+                    HasSizes: hasSizes ? "TRUE" : "FALSE"
                 };
 
                 await fetch(GOOGLE_SHEET_WEB_APP_URL, {
@@ -527,12 +578,41 @@
                     body: JSON.stringify(productData)
                 });
 
-                alert("Product and direct images successfully uploaded to Google Sheet!");
+                // Dynamically add to website catalog grid instantly
+                const grid = document.getElementById('productsGrid');
+                const uniqueId = 'dyn-' + Date.now();
+                let newCard = document.createElement('div');
+                newCard.className = "product-card item-card overflow-hidden flex flex-col justify-between";
+                newCard.setAttribute('data-category', category);
+                newCard.setAttribute('data-title', name.toLowerCase());
+                newCard.innerHTML = `
+                    <div>
+                        <div class="relative">
+                            <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">New</span>
+                            <img id="${uniqueId}-main" src="${img1}" class="w-full h-44 md:h-60 object-cover cursor-pointer" onclick="zoomImage(this.src)">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">${name}</h3>
+                            <p class="text-[10px] text-zinc-400 mt-1">${desc || colors}</p>
+                            <p class="text-[10px] text-emerald-400 font-semibold mt-0.5">✔ In Stock</p>
+                            <div class="mt-2 flex flex-col">
+                                <span class="text-sm md:text-base font-black text-[#ccff00]">Rs. ${price} PKR</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3 pt-0 grid grid-cols-2 gap-1.5">
+                        <button onclick="openCheckout('${name.replace(/'/g, "\\'")}', ${price}, ${hasSizes})" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
+                        <button onclick="addToCart('${name.replace(/'/g, "\\'")}', ${price})" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
+                    </div>
+                `;
+                grid.prepend(newCard);
+
+                alert("Product successfully uploaded to Google Sheet and Live Store!");
                 document.getElementById('adminUploadForm').reset();
                 btn.innerText = "Upload Product to Google Sheet 🚀";
                 btn.disabled = false;
             } catch (err) {
-                alert("Error uploading images/product.");
+                alert("Error uploading product.");
                 btn.innerText = "Upload Product to Google Sheet 🚀";
                 btn.disabled = false;
             }
