@@ -13,12 +13,13 @@
         .btn-neon { background-color: #ccff00; color: #000000; font-weight: 800; }
         .btn-neon:hover { background-color: #b3e600; }
         .filter-btn.active { background-color: #ccff00; color: #000000; border-color: #ccff00; font-weight: 900; }
-        /* Scrollbar styling for smooth category sliding */
         .scrollbar-none::-webkit-scrollbar { display: none; }
         .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+        @keyframes float-anim { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        .whatsapp-float { animation: float-anim 2s infinite ease-in-out; }
     </style>
 </head>
-<body class="bg-[#121212] text-white pb-20 md:pb-0">
+<body class="bg-[#121212] text-white pb-24 md:pb-8">
 
     <!-- Announcement Bar -->
     <div class="bg-[#ccff00] text-black text-xs text-center py-2 px-4 font-black uppercase tracking-wider overflow-hidden">
@@ -27,10 +28,20 @@
 
     <!-- Header / Navbar -->
     <nav class="bg-[#121212] border-b border-zinc-800 sticky top-0 z-40">
-        <div class="max-w-4xl mx-auto px-4 py-3.5 flex justify-between items-center">
-            <button onclick="toggleMenu()" class="text-white text-xl focus:outline-none"><i class="fa-solid fa-bars"></i></button>
-            <h1 class="text-2xl font-black tracking-wider text-white">NOVA<span class="text-[#ccff00]">MART</span></h1>
-            <div class="flex items-center space-x-4 text-zinc-300">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <button onclick="toggleMenu()" class="text-white text-xl focus:outline-none"><i class="fa-solid fa-bars"></i></button>
+                <h1 class="text-2xl font-black tracking-wider text-white">NOVA<span class="text-[#ccff00]">MART</span></h1>
+            </div>
+            
+            <!-- Social Icons Top Right -->
+            <div class="flex items-center space-x-3 text-zinc-300">
+                <div class="hidden sm:flex space-x-2 text-sm text-zinc-400 mr-2">
+                    <a href="https://facebook.com" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://instagram.com" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://tiktok.com" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://youtube.com" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-youtube"></i></a>
+                </div>
                 <button onclick="openCartDrawer()" class="relative hover:text-[#ccff00] text-lg">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span id="cartBadge" class="absolute -top-2 -right-2 bg-[#ccff00] text-black text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
@@ -46,12 +57,13 @@
                 <h2 class="text-xl font-black text-white">NOVA<span class="text-[#ccff00]">MART</span></h2>
                 <button onclick="toggleMenu()" class="text-zinc-400 text-2xl">&times;</button>
             </div>
-            <div class="space-y-4 text-base font-semibold text-zinc-200">
-                <a href="#" onclick="toggleMenu()" class="block py-2 hover:text-[#ccff00]">Home</a>
-                <a href="#featured" onclick="toggleMenu()" class="block py-2 hover:text-[#ccff00]">Catalog</a>
-                <a href="#adminPanel" onclick="toggleMenu()" class="block py-2 text-[#ccff00]">➕ Admin Product Upload</a>
-                <a href="#reviews" onclick="toggleMenu()" class="block py-2 hover:text-[#ccff00]">Customer Reviews ⭐</a>
-                <a href="#footer" onclick="toggleMenu()" class="block py-2 hover:text-[#ccff00]">Contact Us</a>
+            <div class="space-y-4 text-sm font-semibold text-zinc-200">
+                <a href="#" onclick="toggleMenu()" class="block py-2 hover:text-[#ccff00]"><i class="fa-solid fa-house mr-2"></i>Home</a>
+                <a href="#featured" onclick="toggleMenu()" class="block py-2 hover:text-[#ccff00]"><i class="fa-solid fa-layer-group mr-2"></i>Catalog / All Products</a>
+                <a href="#reviews" onclick="toggleMenu()" class="block py-2 hover:text-[#ccff00]"><i class="fa-solid fa-star text-yellow-400 mr-2"></i>Customer Reviews</a>
+                <a href="#faqs" onclick="toggleMenu()" class="block py-2 hover:text-[#ccff00]"><i class="fa-solid fa-circle-question mr-2"></i>FAQs & Help</a>
+                <a href="#adminPanel" onclick="toggleMenu()" class="block py-2 text-[#ccff00] font-bold"><i class="fa-solid fa-plus-circle mr-2"></i>Admin Product Upload</a>
+                <a href="#footer" onclick="toggleMenu()" class="block py-2 hover:text-[#ccff00]"><i class="fa-solid fa-headset mr-2"></i>Contact Us</a>
             </div>
         </div>
         <div class="text-xs text-zinc-500 border-t border-zinc-800 pt-4">
@@ -91,17 +103,25 @@
         <div class="relative bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800">
             <img src="1791656394111.jpg" class="w-full h-64 md:h-80 object-cover opacity-60">
             <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
-                <span class="bg-[#ccff00] text-black text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-widest mb-2">Limited Time Deal</span>
-                <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight uppercase">70% Mega Discount</h2>
+                <span class="bg-[#ccff00] text-black text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-widest mb-2">LIMITED TIME DEAL</span>
+                <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight uppercase">70% MEGA DISCOUNT</h2>
                 <a href="#featured" class="btn-neon px-8 py-3 rounded-md text-sm font-black uppercase tracking-wider shadow-lg mt-4">SHOP NOW</a>
             </div>
+        </div>
+
+        <!-- Trust Badges Section -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mt-3 text-[11px] font-semibold text-zinc-300 bg-zinc-900/60 p-3 rounded-xl border border-zinc-800 text-center">
+            <div>⚡ Fast Delivery</div>
+            <div>📦 Cash on Delivery</div>
+            <div>🔄 Easy Returns</div>
+            <div>💎 100% Guaranteed</div>
         </div>
     </section>
 
     <!-- Main Content Container -->
-    <main class="max-w-4xl mx-auto px-4 py-8 space-y-6" id="featured">
+    <main class="max-w-4xl mx-auto px-4 py-6 space-y-6" id="featured">
         <div class="space-y-4 border-b border-zinc-800 pb-4">
-            <h2 class="text-xl font-black text-white uppercase tracking-wider border-l-4 border-[#ccff00] pl-3">Featured Collection</h2>
+            <h2 class="text-xl font-black text-white uppercase tracking-wider border-l-4 border-[#ccff00] pl-3">FEATURED COLLECTION</h2>
             
             <!-- All Categories Filter Buttons -->
             <div class="flex space-x-2 overflow-x-auto pb-2 text-xs scrollbar-none">
@@ -114,21 +134,28 @@
                 <button onclick="filterCategory('jewelry', this)" class="filter-btn px-4 py-2 rounded-full bg-zinc-800 text-white border border-zinc-700 whitespace-nowrap">💍 Jewelry & Accessories</button>
             </div>
 
+            <!-- Search Bar with Micro Input -->
             <div class="relative">
-                <input type="text" id="searchInput" onkeyup="searchProducts()" placeholder="Search products..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-700 text-sm text-white focus:outline-none focus:border-[#ccff00]">
+                <input type="text" id="searchInput" onkeyup="searchProducts()" placeholder="Search products... (پروڈکٹ تلاش کریں)" class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-700 text-sm text-white focus:outline-none focus:border-[#ccff00]">
                 <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-zinc-500 text-sm"></i>
             </div>
         </div>
 
-        <!-- Products Grid (Original Products Restored + Filtering Support) -->
-        <div class="grid grid-cols-2 gap-4" id="productsGrid">
+        <!-- Products Grid (Original Products Restored + Share Buttons) -->
+        <div class="grid grid-cols-2 gap-3 md:gap-4" id="productsGrid">
 
             <!-- Product 1: Sapphire Wool Shawl -->
             <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="clothing" data-title="sapphire mens wool shawl">
                 <div>
                     <div class="relative">
-                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">Sale</span>
+                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">SALE</span>
+                        <span class="absolute top-2 right-2 bg-red-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded z-10">🔥 Only 3 Left</span>
                         <img id="p1-main-img" src="1791656394111.jpg" class="w-full h-44 md:h-60 object-cover cursor-pointer" onclick="zoomImage(this.src)">
+                        
+                        <!-- Discount Coupon Badge -->
+                        <div class="absolute bottom-2 left-2 bg-black/80 text-[#ccff00] border border-[#ccff00] text-[9px] font-bold px-2 py-0.5 rounded">
+                            🎟️ NOVA10 (10% OFF)
+                        </div>
                     </div>
                     <div class="flex space-x-1.5 p-2 bg-zinc-900/80 overflow-x-auto">
                         <img src="1791656394111.jpg" onclick="changeImage('p1-main-img', '1791656394111.jpg')" class="w-8 h-8 object-cover rounded border border-zinc-700 cursor-pointer hover:border-[#ccff00]">
@@ -136,16 +163,20 @@
                     </div>
                     <div class="p-3">
                         <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">Sapphire Men's Wool Shawl</h3>
-                        <p class="text-[10px] text-emerald-400 font-semibold mt-0.5">✔ In Stock</p>
+                        <p class="text-[10px] text-zinc-400 mt-0.5">Velvet/Wool | 2.75 Gazz</p>
+                        <p class="text-[10px] text-emerald-400 font-semibold mt-0.5">✔ 998 in Stock</p>
                         <div class="mt-2 flex flex-col">
                             <span class="text-[10px] text-zinc-500 line-through">Rs. 3,200 PKR</span>
                             <span class="text-sm md:text-base font-black text-[#ccff00]">Rs. 2,328 PKR</span>
                         </div>
                     </div>
                 </div>
-                <div class="p-3 pt-0 grid grid-cols-2 gap-1.5">
-                    <button onclick="openCheckout('Sapphire Mens Wool Shawl', 2328, true)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
-                    <button onclick="addToCart('Sapphire Mens Wool Shawl', 2328)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
+                <div class="p-3 pt-0 space-y-1.5">
+                    <div class="grid grid-cols-2 gap-1.5">
+                        <button onclick="openCheckout('Sapphire Mens Wool Shawl', 2328, true)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
+                        <button onclick="addToCart('Sapphire Mens Wool Shawl', 2328)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
+                    </div>
+                    <button onclick="shareProduct('Sapphire Mens Wool Shawl')" class="w-full bg-zinc-900 hover:bg-zinc-800 text-zinc-400 py-1 rounded text-[10px] font-semibold"><i class="fa-solid fa-share-nodes mr-1"></i> SHARE</button>
                 </div>
             </div>
 
@@ -153,7 +184,8 @@
             <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="suits" data-title="chiffon maxi suit red">
                 <div>
                     <div class="relative">
-                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">Sale</span>
+                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">SALE</span>
+                        <span class="absolute top-2 right-2 bg-amber-500 text-black text-[9px] font-bold px-1.5 py-0.5 rounded z-10">🔥 Trending</span>
                         <img id="p2-main-img" src="1791656551138.jpg" class="w-full h-44 md:h-60 object-cover cursor-pointer" onclick="zoomImage(this.src)">
                     </div>
                     <div class="flex space-x-1.5 p-2 bg-zinc-900/80 overflow-x-auto">
@@ -162,6 +194,7 @@
                     </div>
                     <div class="p-3">
                         <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">Chiffon Maxi Suit (Red)</h3>
+                        <p class="text-[10px] text-zinc-400 mt-0.5">3 Pcs | Shirt, Trouser & Dupatta</p>
                         <p class="text-[10px] text-emerald-400 font-semibold mt-0.5">✔ In Stock</p>
                         <div class="mt-2 flex flex-col">
                             <span class="text-[10px] text-zinc-500 line-through">Rs. 3,500 PKR</span>
@@ -169,9 +202,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="p-3 pt-0 grid grid-cols-2 gap-1.5">
-                    <button onclick="openCheckout('Chiffon Maxi Suit (Red)', 2658, true)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
-                    <button onclick="addToCart('Chiffon Maxi Suit (Red)', 2658)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
+                <div class="p-3 pt-0 space-y-1.5">
+                    <div class="grid grid-cols-2 gap-1.5">
+                        <button onclick="openCheckout('Chiffon Maxi Suit (Red)', 2658, true)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
+                        <button onclick="addToCart('Chiffon Maxi Suit (Red)', 2658)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
+                    </div>
+                    <button onclick="shareProduct('Chiffon Maxi Suit (Red)')" class="w-full bg-zinc-900 hover:bg-zinc-800 text-zinc-400 py-1 rounded text-[10px] font-semibold"><i class="fa-solid fa-share-nodes mr-1"></i> SHARE</button>
                 </div>
             </div>
 
@@ -179,7 +215,8 @@
             <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="suits" data-title="chiffon maxi suit black">
                 <div>
                     <div class="relative">
-                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">Sale</span>
+                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">SALE</span>
+                        <span class="absolute top-2 right-2 bg-teal-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded z-10">Popular</span>
                         <img id="p3-main-img" src="1791656561857.jpg" class="w-full h-44 md:h-60 object-cover cursor-pointer" onclick="zoomImage(this.src)">
                     </div>
                     <div class="flex space-x-1.5 p-2 bg-zinc-900/80 overflow-x-auto">
@@ -187,6 +224,7 @@
                     </div>
                     <div class="p-3">
                         <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">Chiffon Maxi Suit (Black)</h3>
+                        <p class="text-[10px] text-zinc-400 mt-0.5">3 Pcs | Shirt, Trouser & Dupatta</p>
                         <p class="text-[10px] text-emerald-400 font-semibold mt-0.5">✔ In Stock</p>
                         <div class="mt-2 flex flex-col">
                             <span class="text-[10px] text-zinc-500 line-through">Rs. 3,500 PKR</span>
@@ -194,9 +232,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="p-3 pt-0 grid grid-cols-2 gap-1.5">
-                    <button onclick="openCheckout('Chiffon Maxi Suit (Black)', 2658, true)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
-                    <button onclick="addToCart('Chiffon Maxi Suit (Black)', 2658)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
+                <div class="p-3 pt-0 space-y-1.5">
+                    <div class="grid grid-cols-2 gap-1.5">
+                        <button onclick="openCheckout('Chiffon Maxi Suit (Black)', 2658, true)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
+                        <button onclick="addToCart('Chiffon Maxi Suit (Black)', 2658)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
+                    </div>
+                    <button onclick="shareProduct('Chiffon Maxi Suit (Black)')" class="w-full bg-zinc-900 hover:bg-zinc-800 text-zinc-400 py-1 rounded text-[10px] font-semibold"><i class="fa-solid fa-share-nodes mr-1"></i> SHARE</button>
                 </div>
             </div>
 
@@ -204,21 +245,26 @@
             <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="kitchen" data-title="electric juicer blender">
                 <div>
                     <div class="relative">
-                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">Sale</span>
+                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">SALE</span>
+                        <span class="absolute top-2 right-2 bg-indigo-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded z-10">Best Seller</span>
                         <img src="1791656759396.jpg" class="w-full h-44 md:h-60 object-cover cursor-pointer" onclick="zoomImage(this.src)">
                     </div>
                     <div class="p-3">
                         <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">Electric Juicer Blender</h3>
-                        <p class="text-[10px] text-emerald-400 font-semibold mt-0.5">✔ Best Seller</p>
+                        <p class="text-[10px] text-zinc-400 mt-0.5">USB Rechargeable | ABS Plastic</p>
+                        <p class="text-[10px] text-emerald-400 font-semibold mt-0.5">✔ In Stock</p>
                         <div class="mt-2 flex flex-col">
                             <span class="text-[10px] text-zinc-500 line-through">Rs. 2,800 PKR</span>
                             <span class="text-sm md:text-base font-black text-[#ccff00]">Rs. 2,018 PKR</span>
                         </div>
                     </div>
                 </div>
-                <div class="p-3 pt-0 grid grid-cols-2 gap-1.5">
-                    <button onclick="openCheckout('Electric Juicer Blender', 2018, false)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
-                    <button onclick="addToCart('Electric Juicer Blender', 2018)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
+                <div class="p-3 pt-0 space-y-1.5">
+                    <div class="grid grid-cols-2 gap-1.5">
+                        <button onclick="openCheckout('Electric Juicer Blender', 2018, false)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
+                        <button onclick="addToCart('Electric Juicer Blender', 2018)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
+                    </div>
+                    <button onclick="shareProduct('Electric Juicer Blender')" class="w-full bg-zinc-900 hover:bg-zinc-800 text-zinc-400 py-1 rounded text-[10px] font-semibold"><i class="fa-solid fa-share-nodes mr-1"></i> SHARE</button>
                 </div>
             </div>
 
@@ -226,11 +272,12 @@
             <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="jewelry" data-title="cute cat wall mount hooks">
                 <div>
                     <div class="relative">
-                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">Sale</span>
+                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">SALE</span>
                         <img src="1791656922043.jpg" class="w-full h-44 md:h-60 object-cover cursor-pointer" onclick="zoomImage(this.src)">
                     </div>
                     <div class="p-3">
                         <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">Cute Cat Wall Mount Hooks</h3>
+                        <p class="text-[10px] text-zinc-400 mt-0.5">1 Pc | Multicolored</p>
                         <p class="text-[10px] text-emerald-400 font-semibold mt-0.5">✔ In Stock</p>
                         <div class="mt-2 flex flex-col">
                             <span class="text-[10px] text-zinc-500 line-through">Rs. 2,000 PKR</span>
@@ -238,9 +285,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="p-3 pt-0 grid grid-cols-2 gap-1.5">
-                    <button onclick="openCheckout('Cute Cat Wall Mount Hooks', 1458, false)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
-                    <button onclick="addToCart('Cute Cat Wall Mount Hooks', 1458)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
+                <div class="p-3 pt-0 space-y-1.5">
+                    <div class="grid grid-cols-2 gap-1.5">
+                        <button onclick="openCheckout('Cute Cat Wall Mount Hooks', 1458, false)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
+                        <button onclick="addToCart('Cute Cat Wall Mount Hooks', 1458)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
+                    </div>
+                    <button onclick="shareProduct('Cute Cat Wall Mount Hooks')" class="w-full bg-zinc-900 hover:bg-zinc-800 text-zinc-400 py-1 rounded text-[10px] font-semibold"><i class="fa-solid fa-share-nodes mr-1"></i> SHARE</button>
                 </div>
             </div>
 
@@ -248,11 +298,12 @@
             <div class="product-card item-card overflow-hidden flex flex-col justify-between" data-category="jewelry" data-title="korean wedding ring">
                 <div>
                     <div class="relative">
-                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">Sale</span>
+                        <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">SALE</span>
                         <img src="1791657049968.jpg" class="w-full h-44 md:h-60 object-cover cursor-pointer" onclick="zoomImage(this.src)">
                     </div>
                     <div class="p-3">
                         <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">Korean Wedding Ring</h3>
+                        <p class="text-[10px] text-zinc-400 mt-0.5">Silver Color | Premium</p>
                         <p class="text-[10px] text-emerald-400 font-semibold mt-0.5">✔ In Stock</p>
                         <div class="mt-2 flex flex-col">
                             <span class="text-[10px] text-zinc-500 line-through">Rs. 1,900 PKR</span>
@@ -260,9 +311,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="p-3 pt-0 grid grid-cols-2 gap-1.5">
-                    <button onclick="openCheckout('Korean Style Wedding Ring', 1364, false)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
-                    <button onclick="addToCart('Korean Style Wedding Ring', 1364)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
+                <div class="p-3 pt-0 space-y-1.5">
+                    <div class="grid grid-cols-2 gap-1.5">
+                        <button onclick="openCheckout('Korean Style Wedding Ring', 1364, false)" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
+                        <button onclick="addToCart('Korean Style Wedding Ring', 1364)" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
+                    </div>
+                    <button onclick="shareProduct('Korean Style Wedding Ring')" class="w-full bg-zinc-900 hover:bg-zinc-800 text-zinc-400 py-1 rounded text-[10px] font-semibold"><i class="fa-solid fa-share-nodes mr-1"></i> SHARE</button>
                 </div>
             </div>
 
@@ -300,8 +354,8 @@
                         </select>
                     </div>
                     <div>
-                        <label class="font-bold text-zinc-300">Colors Available:</label>
-                        <input type="text" id="adminColors" placeholder="e.g. Red, Black, Blue" class="w-full p-2.5 rounded bg-zinc-800 text-white border border-zinc-700 mt-1 focus:outline-none focus:border-[#ccff00]">
+                        <label class="font-bold text-zinc-300">Colors / Details:</label>
+                        <input type="text" id="adminColors" placeholder="e.g. Red, Black | 3 Pcs" class="w-full p-2.5 rounded bg-zinc-800 text-white border border-zinc-700 mt-1 focus:outline-none focus:border-[#ccff00]">
                     </div>
                 </div>
 
@@ -353,34 +407,98 @@
         </div>
     </section>
 
-    <!-- Customer Reviews Section -->
+    <!-- Leave a Review & Customer Reviews Section -->
     <section id="reviews" class="max-w-4xl mx-auto px-4 py-8 border-t border-zinc-800 space-y-6">
         <div class="flex items-center justify-between">
             <h2 class="text-lg font-black text-white uppercase tracking-wider border-l-4 border-[#ccff00] pl-3">Customer Reviews</h2>
-            <div class="text-[#ccff00] text-sm">⭐⭐⭐⭐⭐ <span class="font-bold text-white">4.9/5</span></div>
+            <div class="text-[#ccff00] text-sm">⭐⭐⭐⭐⭐ <span class="font-bold text-white">4.9/5</span> <span class="text-[10px] text-zinc-500">(Based on 200+ Verified Orders)</span></div>
         </div>
+
+        <!-- Leave A Review Form -->
+        <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-xl space-y-3">
+            <h3 class="font-bold text-xs text-white">Leave a Review</h3>
+            <div class="flex space-x-1 text-yellow-400 text-sm">
+                <i class="fa-solid fa-star cursor-pointer"></i>
+                <i class="fa-solid fa-star cursor-pointer"></i>
+                <i class="fa-solid fa-star cursor-pointer"></i>
+                <i class="fa-solid fa-star cursor-pointer"></i>
+                <i class="fa-solid fa-star cursor-pointer"></i>
+            </div>
+            <textarea placeholder="Write your experience with NOVA Mart..." rows="2" class="w-full p-2.5 rounded bg-zinc-800 text-white border border-zinc-700 text-xs focus:outline-none focus:border-[#ccff00]"></textarea>
+            <button onclick="alert('Thank you for your review!')" class="btn-neon px-4 py-2 rounded text-xs font-black uppercase">Submit Review</button>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-xl space-y-2">
-                <span class="font-bold text-xs text-white">Usman Khan <span class="text-emerald-400 text-[10px]">✔ Verified</span></span>
-                <p class="text-xs text-zinc-300">"Bohat hi zabardast quality hy! Delivery 2 din me mil gayi."</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-xs text-white">Usman Khan <span class="text-emerald-400 text-[10px]">✔ Verified Buyer</span></span>
+                    <span class="text-yellow-400 text-xs">⭐⭐⭐⭐⭐</span>
+                </div>
+                <p class="text-xs text-zinc-300">"Bohat hi zabardast quality hy! Delivery bhi 2 din me mil gayi. Sapphire shawl bilkul original jesi hy."</p>
             </div>
             <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-xl space-y-2">
-                <span class="font-bold text-xs text-white">Ayesha Siddiqua <span class="text-emerald-400 text-[10px]">✔ Verified</span></span>
-                <p class="text-xs text-zinc-300">"Chiffon Maxi Suit red wala bohat pyara hy. Fabric boht zabardast hy."</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-xs text-white">Ayesha Siddiqua <span class="text-emerald-400 text-[10px]">✔ Verified Buyer</span></span>
+                    <span class="text-yellow-400 text-xs">⭐⭐⭐⭐⭐</span>
+                </div>
+                <p class="text-xs text-zinc-300">"Chiffon Maxi Suit red wala bohat pyara hy. Fabric aur stitching boht zabardast hy. Highly recommended!"</p>
             </div>
+        </div>
+    </section>
+
+    <!-- FAQs Accordion Section -->
+    <section id="faqs" class="max-w-4xl mx-auto px-4 py-6 border-t border-zinc-800 space-y-4">
+        <h2 class="text-lg font-black text-white uppercase tracking-wider border-l-4 border-[#ccff00] pl-3">Frequently Asked Questions</h2>
+        
+        <div class="space-y-2 text-xs">
+            <details class="bg-zinc-900 border border-zinc-800 p-3 rounded-lg cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">How many days will delivery take? <i class="fa-solid fa-chevron-down text-[#ccff00]"></i></summary>
+                <p class="mt-2 text-zinc-400">Standard delivery across Pakistan takes 2 to 4 working days via Cash on Delivery.</p>
+            </details>
+            <details class="bg-zinc-900 border border-zinc-800 p-3 rounded-lg cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">Can I open and check the parcel before payment? <i class="fa-solid fa-chevron-down text-[#ccff00]"></i></summary>
+                <p class="mt-2 text-zinc-400">Yes! Open-parcel option is available upon request with the courier rider.</p>
+            </details>
+            <details class="bg-zinc-900 border border-zinc-800 p-3 rounded-lg cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">What is the return & exchange policy? <i class="fa-solid fa-chevron-down text-[#ccff00]"></i></summary>
+                <p class="mt-2 text-zinc-400">We offer a 7-day hassle-free return and exchange policy if the item is damaged or defective.</p>
+            </details>
         </div>
     </section>
 
     <!-- Footer -->
     <footer id="footer" class="bg-[#121212] border-t border-zinc-800 mt-12 py-8 text-center text-xs text-zinc-500 space-y-4">
         <div class="flex justify-center space-x-6 text-xl text-zinc-300">
-            <a href="https://www.facebook.com/share/1DjrFG8w3P/" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://www.instagram.com/novam_artonline" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@novamartonline" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://youtube.com/@novamartonline" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://facebook.com" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://instagram.com" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://tiktok.com" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://youtube.com" target="_blank" class="hover:text-[#ccff00]"><i class="fa-brands fa-youtube"></i></a>
         </div>
         <p>© 2026 NOVA MART. All Rights Reserved.</p>
     </footer>
+
+    <!-- Fixed Bottom Sticky Bar for Mobile -->
+    <div class="fixed bottom-0 inset-x-0 bg-zinc-900/95 backdrop-blur border-t border-zinc-800 p-2.5 flex justify-between items-center z-40 md:hidden max-w-4xl mx-auto">
+        <span class="text-xs font-black text-white pl-2">NOVA<span class="text-[#ccff00]">MART</span></span>
+        <div class="flex space-x-2">
+            <button onclick="openCartDrawer()" class="bg-zinc-800 text-white px-3 py-2 rounded text-xs font-bold">Cart</button>
+            <a href="https://wa.me/923271213219" target="_blank" class="btn-neon px-4 py-2 rounded text-xs font-black uppercase">Order WhatsApp</a>
+        </div>
+    </div>
+
+    <!-- Live Social Proof Toast Popup -->
+    <div id="socialProofToast" class="fixed bottom-16 left-4 bg-zinc-900 border border-zinc-700 p-3 rounded-xl shadow-2xl flex items-center space-x-3 z-50 transform translate-y-20 opacity-0 transition-all duration-500 max-w-xs">
+        <div class="text-2xl">🛍️</div>
+        <div class="text-[11px]">
+            <p id="proofText" class="text-white font-bold"></p>
+            <p class="text-zinc-400 text-[9px]">2 minutes ago • <span class="text-emerald-400 font-semibold">Verified</span></p>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/923271213219" target="_blank" class="fixed bottom-16 right-4 bg-emerald-500 text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-2xl z-40 whatsapp-float hover:bg-emerald-600">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
     <!-- Checkout Modal -->
     <div id="checkoutModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4">
@@ -418,6 +536,14 @@
         function openCartDrawer() { document.getElementById('cartDrawer').classList.toggle('translate-x-full'); }
         function changeImage(imgId, newSrc) { document.getElementById(imgId).src = newSrc; }
         function zoomImage(src) { window.open(src, '_blank'); }
+
+        function shareProduct(title) {
+            if (navigator.share) {
+                navigator.share({ title: title, url: window.location.href });
+            } else {
+                alert("Product Link Copied to Clipboard!");
+            }
+        }
 
         // Category Filter Function
         function filterCategory(cat, btn) {
@@ -530,7 +656,7 @@
             });
         }
 
-        // Admin Product Upload Function with Direct File Selectors & Dynamic Grid Addition
+        // Admin Product Upload Function with Direct File Selectors
         async function handleAdminUpload(e) {
             e.preventDefault();
             const btn = document.getElementById('adminSubmitBtn');
@@ -588,21 +714,24 @@
                 newCard.innerHTML = `
                     <div>
                         <div class="relative">
-                            <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">New</span>
+                            <span class="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded uppercase z-10">NEW</span>
                             <img id="${uniqueId}-main" src="${img1}" class="w-full h-44 md:h-60 object-cover cursor-pointer" onclick="zoomImage(this.src)">
                         </div>
                         <div class="p-3">
                             <h3 class="font-bold text-xs md:text-sm text-zinc-100 line-clamp-1">${name}</h3>
-                            <p class="text-[10px] text-zinc-400 mt-1">${desc || colors}</p>
+                            <p class="text-[10px] text-zinc-400 mt-0.5">${colors || 'In Stock'}</p>
                             <p class="text-[10px] text-emerald-400 font-semibold mt-0.5">✔ In Stock</p>
                             <div class="mt-2 flex flex-col">
                                 <span class="text-sm md:text-base font-black text-[#ccff00]">Rs. ${price} PKR</span>
                             </div>
                         </div>
                     </div>
-                    <div class="p-3 pt-0 grid grid-cols-2 gap-1.5">
-                        <button onclick="openCheckout('${name.replace(/'/g, "\\'")}', ${price}, ${hasSizes})" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
-                        <button onclick="addToCart('${name.replace(/'/g, "\\'")}', ${price})" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
+                    <div class="p-3 pt-0 space-y-1.5">
+                        <div class="grid grid-cols-2 gap-1.5">
+                            <button onclick="openCheckout('${name.replace(/'/g, "\\'")}', ${price}, ${hasSizes})" class="btn-neon py-2 rounded text-[10px] uppercase font-black">Buy Now</button>
+                            <button onclick="addToCart('${name.replace(/'/g, "\\'")}', ${price})" class="bg-zinc-800 hover:bg-zinc-700 text-[#ccff00] py-2 rounded text-[10px] uppercase font-bold">+ Cart</button>
+                        </div>
+                        <button onclick="shareProduct('${name.replace(/'/g, "\\'")}')" class="w-full bg-zinc-900 hover:bg-zinc-800 text-zinc-400 py-1 rounded text-[10px] font-semibold"><i class="fa-solid fa-share-nodes mr-1"></i> SHARE</button>
                     </div>
                 `;
                 grid.prepend(newCard);
@@ -617,6 +746,24 @@
                 btn.disabled = false;
             }
         }
+
+        // Live Social Proof Notification Popups
+        const salesData = [
+            "Sana from Islamabad bought Chiffon Maxi Suit (Red)",
+            "Ali from Lahore bought Sapphire Wool Shawl",
+            "Fatima from Karachi bought Electric Juicer Blender",
+            "Usman from Peshawar bought Korean Wedding Ring"
+        ];
+        let proofIndex = 0;
+        setInterval(() => {
+            const toast = document.getElementById('socialProofToast');
+            document.getElementById('proofText').innerText = salesData[proofIndex];
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 4000);
+            proofIndex = (proofIndex + 1) % salesData.length;
+        }, 12000);
     </script>
 </body>
 </html>
